@@ -11,16 +11,8 @@ import java.util.List;
 @Configuration
 public class PaymentConfig {
 
-    private final PaymentRepository paymentRepository;
-
-    @Autowired
-    public PaymentConfig(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
-
-
     @Bean
-    public CommandLineRunner commandLineRunner() {
+    public CommandLineRunner commandLineRunner(PaymentRepository paymentRepository) {
         return args -> {
             if (paymentRepository.count() == 0) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

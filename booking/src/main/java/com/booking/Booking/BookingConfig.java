@@ -12,14 +12,8 @@ import java.util.List;
 @Configuration
 public class BookingConfig {
 
-    private final BookingRepository bookingRepository;
-    @Autowired
-    public BookingConfig(BookingRepository bookingRepository){
-        this.bookingRepository = bookingRepository;
-    }
-
     @Bean
-    public CommandLineRunner commandLineRunner() {
+    public CommandLineRunner commandLineRunner(BookingRepository bookingRepository) {
         return args -> {
             if (bookingRepository.count() == 0) {
 
