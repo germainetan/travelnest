@@ -1,0 +1,57 @@
+
+version: '3.8'
+services:
+  booking:
+    image: booking:1.0
+    container_name: booking-container
+    build:
+      context: ./booking
+      dockerfile: booking.Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+          - dbname=travelnest:travelnest@host.docker.internal
+
+  owner:
+    image: owner:1.0
+    container_name: owner-container
+    build:
+      context: ./owner
+      dockerfile: owner.Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - dbname=travelnest:travelnest@host.docker.internal
+
+  renter:
+    image: renter:1.0
+    container_name: renter-container
+    build:
+      context: ./renter
+      dockerfile: renter.Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - dbname=travelnest:travelnest@host.docker.internal
+
+  property:
+    image: property:1.0
+    container_name: property-container
+    build:
+      context: ./property
+      dockerfile: property.Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - dbname=travelnest:travelnest@host.docker.internal
+
+  payment:
+    image: payment:1.0
+    container_name: payment-container
+    build:
+      context: ./payment
+      dockerfile: payment.Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - dbname=travelnest:travelnest@host.docker.internal
