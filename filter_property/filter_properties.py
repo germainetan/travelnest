@@ -5,7 +5,7 @@ import os, sys
 from os import environ
 
 # import requests
-from invokes import invoke_http
+from ..req.invokes import invoke_http
 
 # import json requirements
 
