@@ -1,0 +1,6 @@
+com\owner\Owner\Owner.class
+com\owner\OwnerApplication.class
+com\owner\Owner\OwnerConfig.class
+com\owner\Owner\OwnerService.class
+com\owner\Owner\OwnerController.class
+com\owner\Owner\OwnerRepository.class

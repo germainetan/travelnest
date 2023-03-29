@@ -8,6 +8,7 @@ import com.payment.Payment.PaymentRepository;
 import com.payment.Payment.PaymentService;
 import lombok.AllArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -23,7 +24,9 @@ import java.util.logging.Logger;
 @RequestMapping("/payment")
 public class PaymentController {
 
+    @Autowired
     private PaymentService paymentService;
+    @Autowired
     private PaymentRepository repo;
 
     private final String  BASE = "https://api-m.sandbox.paypal.com";
@@ -48,6 +51,14 @@ public class PaymentController {
     public ResponseEntity<List<Payment>> get_all_payments(){
         return new ResponseEntity<>(paymentService.get_all_payments(), HttpStatus.OK);
 
+    }
+
+    // Get paymentID from orderID
+    @GetMapping("/getpaymentid/{orderId}")
+    @CrossOrigin
+    public Object getPaymentId(@PathVariable("orderId") String orderId) {
+        Payment paymentdb = repo.findByOrderID(orderId).get();
+        return new ResponseEntity<>(paymentdb, HttpStatus.OK);
     }
 
     // Get payment details from paymentID
