@@ -62,19 +62,19 @@ services:
       - dbname=travelnest:travelnest@host.docker.internal
 
 
-  filter_property:
-    image: filter_property:1.0
-    container_name: filter_property-container
-    build:
-      context: ./
-      dockerfile: ./filter_property/filter_property.Dockerfile
-    restart: always
-    ports:
-      - "8086:8086"
-    depends_on:
-      - property
-      - booking
-    environment:
-      property_URL: http://property:8083/property
-      booking_URL: http://booking:8080/booking
-      PYTHONUNBUFFERED: 1
+  # filter_property:
+  #   image: filter_property:1.0
+  #   container_name: filter_property-container
+  #   build:
+  #     context: ./
+  #     dockerfile: ./filter_property/filter_property.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8086:8086"
+  #   depends_on:
+  #     - property
+  #     - booking
+  #   environment:
+  #     property_URL: http://property:8083/property
+  #     booking_URL: http://booking:8080/booking
+  #     PYTHONUNBUFFERED: 1

@@ -368,7 +368,7 @@ public class PaymentController {
     // Order Initialization
     @RequestMapping(value="/api/orders", method = RequestMethod.POST)
     @CrossOrigin
-    public Object createOrder() throws JsonProcessingException {
+    public Object createOrder(@RequestBody String body) throws JsonProcessingException {
         String accessToken = generateAccessToken();
         RestTemplate restTemplate = new RestTemplate();
 
@@ -379,8 +379,9 @@ public class PaymentController {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         //JSON String
-        String requestJson = "{\"intent\":\"AUTHORIZE\",\"purchase_units\":[{\"amount\":{\"currency_code\":\"USD\",\"value\":\"100.00\"}}]}";
-        HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+//        String requestJson = "{\"intent\":\"AUTHORIZE\",\"purchase_units\":[{\"amount\":{\"currency_code\":\"USD\",\"value\":\"100.00\"}}]}";
+//        HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+        HttpEntity<String> entity = new HttpEntity<String>(body, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/checkout/orders",
