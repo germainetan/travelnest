@@ -81,6 +81,25 @@ services:
       # booking_URL: http://booking:8080/booking
       PYTHONUNBUFFERED: 1
 
+  process_booking:
+    image: process_booking:1.0
+    container_name: process_booking-container
+    build:
+      context: ./process_booking
+      dockerfile: process_booking.Dockerfile
+    restart: always
+    ports:
+      - "8088:5100"
+    depends_on:
+      - payment
+      - property
+      - booking
+      - renter
+      - owner
+    environment:
+      # property_URL: http://property:8083/property
+      # booking_URL: http://booking:8080/booking
+      PYTHONUNBUFFERED: 1
 
   # filter_property:
   #   image: filter_property:1.0

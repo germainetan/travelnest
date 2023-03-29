@@ -9,11 +9,11 @@ from invokes import invoke_http
 app = Flask(__name__)
 CORS(app)
 
-payment_URL = "http://localhost:8084/payment/"
-booking_URL = "http://localhost:8080/booking"
-property_URL = "http://localhost:8083/property/"
-owner_URL = "http://localhost:8081/owner/"
-renter_URL = "http://localhost:8082/renter/"
+payment_URL = "http://payment-container:8084/payment/"
+booking_URL = "http://booking-container:8080/booking"
+property_URL = "http://property-container:8083/property/"
+owner_URL = "http://owner-container:8081/owner/"
+renter_URL = "http://renter-container:8082/renter/"
 
 
 @app.route("/accept_booking", methods=['POST'])
@@ -143,7 +143,7 @@ def processcancelBooking(order):
     print('captureid:', captureid)
 
     # Invoke the Payment microservice again
-    # Capture funds
+    # Refund funds
     print('\n-----Invoking Payment microservice-----')
     payment_refund_result = invoke_http(payment_URL + "api/orders/" + captureid + "/refund", method='POST')
     print('payment_refund_result:', payment_refund_result)
@@ -171,7 +171,7 @@ def processcancelBooking(order):
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) +
           " for placing an order...")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5100, debug=True)
     # Notes for the parameters:
     # - debug=True will reload the program automatically if a change is detected;
     #   -- it in fact starts two instances of the same flask program,
