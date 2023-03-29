@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/booking")
 public class BookingController {
 
+    //placeholder
     @Autowired
     private BookingService bookingService;
 
