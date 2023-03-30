@@ -138,7 +138,7 @@ def processcancelBooking(order):
     # Invoke the Booking microservice
     # Retrieve paymentID, renterID, ownerID
     print('\n-----Invoking Booking microservice-----')
-    # update_booking = invoke_http(booking_URL + "/" + str(bookingid) + "?booking_status=cancelled", method='PUT')
+    update_booking = invoke_http(booking_URL + "/" + str(bookingid) + "?booking_status=cancelled", method='PUT')
     booking_result = invoke_http(booking_URL + "/" + str(bookingid), method='GET')
     renterid = booking_result["renterID"]
     paymentid = booking_result["paymentID"]

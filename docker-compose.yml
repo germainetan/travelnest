@@ -168,25 +168,25 @@ services:
   # Place Booking: Place Booking microservice
   #################################################
 
-  # place_booking:
-  #   image: place_booking:1.0
-  #   container_name: place_booking-container
-  #   build:
-  #     context: ./place_booking
-  #     dockerfile: place_booking.Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "8087:5000"
-  #   depends_on:
-  #     - payment
-  #     - property
-  #     - booking
-  #     - renter
-  #     - owner
-  #   environment:
-  #     # property_URL: http://property:8083/property
-  #     # booking_URL: http://booking:8080/booking
-  #     PYTHONUNBUFFERED: 1
+  place_booking:
+    image: place_booking:1.0
+    container_name: place_booking-container
+    build:
+      context: ./place_booking
+      dockerfile: place_booking.Dockerfile
+    restart: always
+    ports:
+      - "8087:5000"
+    depends_on:
+      - payment
+      - property
+      - booking
+      - renter
+      - owner
+    environment:
+      # property_URL: http://property:8083/property
+      # booking_URL: http://booking:8080/booking
+      PYTHONUNBUFFERED: 1
 
   #################################################
   # Process Booking: Process Booking microservice
