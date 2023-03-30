@@ -6,6 +6,9 @@ import os, sys
 import requests
 from invokes import invoke_http
 
+import amqp_setup
+import pika
+
 app = Flask(__name__)
 CORS(app)
 
@@ -51,6 +54,7 @@ def accept_booking():
 def processBooking(order):
 
     bookingid = order["bookingid"]
+    amqp_setup.check_setup()
 
     # Invoke the Booking microservice
     # Retrieve paymentID, renterID
@@ -81,6 +85,13 @@ def processBooking(order):
     print('\n\n-----Invoking Renter microservice-----')
     renter_result = invoke_http(renter_URL + str(renterid), method='GET')
     print('renter_phone:', renter_result["phone"])
+
+    # Send to AMQP
+    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'98242683'}
+    message = {'bookingStatus': booking_result['booking_status'], 'bookingid': bookingid, 'renterFullname': renter_result["fullName"], 'renterPhone': renter_result["phone"]}
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="whatsapp-num", 
+            body=message, properties=pika.BasicProperties(delivery_mode = 2)) 
+    print("\nStatus published to RabbitMQ Exchange.\n")
 
     # Return Invoke Status, Owner's email, Renter's email
     return {
@@ -125,13 +136,15 @@ def processcancelBooking(order):
     bookingid = order["bookingid"]
 
     # Invoke the Booking microservice
-    # Retrieve paymentID, renterID
+    # Retrieve paymentID, renterID, ownerID
     print('\n-----Invoking Booking microservice-----')
-    # update_booking = invoke_http(booking_URL + "/" + str(bookingid) + "?booking_status=confirmed", method='PUT')
+    # update_booking = invoke_http(booking_URL + "/" + str(bookingid) + "?booking_status=cancelled", method='PUT')
     booking_result = invoke_http(booking_URL + "/" + str(bookingid), method='GET')
     renterid = booking_result["renterID"]
     paymentid = booking_result["paymentID"]
+    ownerid = booking_result['ownerID']
     print('Renterid:', renterid)
+    print('Ownerid:', ownerid)
     print('Paymentid:', paymentid)
     print('Booking_status:', booking_result['booking_status'])
 
@@ -160,6 +173,19 @@ def processcancelBooking(order):
     print('\n\n-----Invoking Renter microservice-----')
     renter_result = invoke_http(renter_URL + str(renterid), method='GET')
     print('renter_phone:', renter_result["phone"])
+
+    # Invoke the Owner microservice
+    # Retrieve Owner's phone from RenterID
+    print('\n\n-----Invoking Renter microservice-----')
+    owner_result = invoke_http(owner_URL + str(ownerid), method='GET')
+    print('owner_phone:', owner_result["phone"])
+
+    # Send to AMQP
+    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'98242683'}
+    message = {'bookingStatus': booking_result['booking_status'], 'bookingid': bookingid, 'ownerFullname': owner_result["fullname"], 'ownerPhone': owner_result['phone'], 'renterFullname': renter_result["fullName"], 'renterPhone': renter_result["phone"]}
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="whatsapp-num", 
+            body=message, properties=pika.BasicProperties(delivery_mode = 2)) 
+    print("\nStatus published to RabbitMQ Exchange.\n")
 
     # Return Invoke Status, Owner's email, Renter's email
     return {
