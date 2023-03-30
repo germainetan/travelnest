@@ -66,8 +66,10 @@ services:
     image: filter_property:1.0
     container_name: filter_property-container
     build:
-      context: ./
-      dockerfile: ./filter_property/filter_property.Dockerfile
+      # context: ./
+      # dockerfile: ./filter_property/filter_property.Dockerfile
+      context: ./filter_property
+      dockerfile: filter_property.Dockerfile
     restart: always
     ports:
       - "8086:8086"

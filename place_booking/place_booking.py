@@ -17,6 +17,7 @@ renter_URL = "http://localhost:8082/renter/"
 
 
 @app.route("/place_booking", methods=['POST'])
+
 def place_booking():
     # processBooking()
     # return "Worked"
