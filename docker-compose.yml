@@ -124,45 +124,45 @@ services:
   # Check Booking: Check Booking microservice
   #################################################
 
-  # check_booking:
-  #   image: check_booking:1.0
-  #   container_name: check_booking-container
-  #   build:
-  #     context: ./check_booking
-  #     dockerfile: ./check_booking.Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "8085:8085"
-  #   depends_on:
-  #     - property
-  #     - booking
-  #     - renter
-  #   environment:
-  #     property_URL: http://property:8083/property
-  #     booking_URL: http://booking:8080/booking
-  #     renter_URL: http://renter:8082/renter
-  #     PYTHONUNBUFFERED: 1
+  check_booking:
+    image: check_booking:1.0
+    container_name: check_booking-container
+    build:
+      context: ./check_booking
+      dockerfile: ./check_booking.Dockerfile
+    restart: always
+    ports:
+      - "8085:8085"
+    depends_on:
+      - property
+      - booking
+      - renter
+    environment:
+      property_URL: http://property:8083/property
+      booking_URL: http://booking:8080/booking
+      renter_URL: http://renter:8082/renter
+      PYTHONUNBUFFERED: 1
 
   #################################################
   # Filter Property: Filter Property microservice
   #################################################
 
-  # filter_property:
-  #   image: filter_property:1.0
-  #   container_name: filter_property-container
-  #   build:
-  #     context: ./filter_property
-  #     dockerfile: filter_property.Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "8086:8086"
-  #   depends_on:
-  #     - property
-  #     - booking
-  #   environment:
-  #     property_URL: http://property:8083/property
-  #     booking_URL: http://booking:8080/booking
-  #     PYTHONUNBUFFERED: 1
+  filter_property:
+    image: filter_property:1.0
+    container_name: filter_property-container
+    build:
+      context: ./filter_property
+      dockerfile: filter_property.Dockerfile
+    restart: always
+    ports:
+      - "8086:8086"
+    depends_on:
+      - property
+      - booking
+    environment:
+      property_URL: http://property:8083/property
+      booking_URL: http://booking:8080/booking
+      PYTHONUNBUFFERED: 1
 
   #################################################
   # Place Booking: Place Booking microservice
@@ -176,21 +176,25 @@ services:
       dockerfile: place_booking.Dockerfile
     restart: always
     ports:
-      - "8087:5000"
+      - "8087:8087"
     depends_on:
       - payment
       - property
       - booking
       - renter
       - owner
+      - rabbitmq
+      - whatsapp
     environment:
       # property_URL: http://property:8083/property
       # booking_URL: http://booking:8080/booking
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
-  #################################################
-  # Process Booking: Process Booking microservice
-  #################################################
+  # #################################################
+  # # Process Booking: Process Booking microservice
+  # #################################################
 
   process_booking:
     image: process_booking:1.0
@@ -200,7 +204,7 @@ services:
       dockerfile: process_booking.Dockerfile
     restart: always
     ports:
-      - "8088:5100"
+      - "8088:8088"
     depends_on:
       - payment
       - property

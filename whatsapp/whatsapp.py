@@ -22,8 +22,8 @@ def sendWhatsapp(data):
     authToken = '9caa9f89094c3a08755321b82d061de3'
     client = Client(sid, authToken)
 
-    ownerPhone = 'whatsapp:+65' + data['ownerPhone']
-    renterPhone = 'whatsapp:+65' + data['renterPhone']
+    ownerPhone = 'whatsapp:+65' + str(data['ownerPhone'])
+    renterPhone = 'whatsapp:+65' + str(data['renterPhone'])
 
     # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'87276883'}
     if data['bookingStatus'] == 'pending':

@@ -22,10 +22,10 @@ public class OwnerConfig {
                 );
 
                 Owner O002 = new Owner(
-                        "Mary Lim",
+                        "Germaine Lim",
                         33,
-                        17283093,
-                        "marylim@gmail.com"
+                        87276883,
+                        "gerlim@gmail.com"
                 );
 
                 Owner O003 = new Owner(

@@ -10,7 +10,7 @@ public class Owner {
     private Integer ownerID;
 
     @Column
-    private String fullname;
+    private String fullName;
     @Column
     private Integer age;
     @Column
@@ -24,18 +24,18 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(Integer ownerID, String fullname,
+    public Owner(Integer ownerID, String fullName,
                  Integer age, Integer phone, String email) {
         this.ownerID = ownerID;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.age = age;
         this.phone = phone;
         this.email = email;
     }
 
-    public Owner(String fullname, Integer age,
+    public Owner(String fullName, Integer age,
                  Integer phone, String email) {
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.age = age;
         this.phone = phone;
         this.email = email;
@@ -51,12 +51,12 @@ public class Owner {
         this.ownerID = ownerID;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getfullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setfullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Integer getAge() {
@@ -87,7 +87,7 @@ public class Owner {
     public String toString() {
         return "Owner{" +
                 "ownerID=" + ownerID +
-                ", fullname='" + fullname + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +

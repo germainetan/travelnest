@@ -74,10 +74,10 @@ public class RenterConfig {
                         "Karen was a pleasure to work with. She was organized and responsible.",
                         0.9);
                 Renter R009 = new Renter(
-                        "Tom Hamilton",
-                        34, 97394836,
-                        "tomhamilton@gmail.com",
-                        "Tom was a great tenant who was always courteous and respectful.",
+                        "Fadhli",
+                        23, 92343554,
+                        "fadhli@gmail.com",
+                        "Fadhli was a great tenant who was always courteous and respectful.",
                         1);
                 Renter R0010 = new Renter(
                         "Sharon Chua",
