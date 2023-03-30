@@ -71,18 +71,7 @@ public class BookingController {
             @RequestParam Integer renterID,
             @RequestParam String booking_status) {
 
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime localDateTime = LocalDateTime.of(
-                now.getYear(),
-                now.getMonth(),
-                now.getDayOfMonth(),
-                now.getHour(),
-                now.getMinute(),
-                0, // set seconds to zero
-                0  // set nanoseconds to zero
-        );
-
-        List<Booking> booking = bookingService.get_by_renter_and_booking_status(renterID, booking_status, localDateTime);
+        List<Booking> booking = bookingService.get_by_renter_and_booking_status(renterID, booking_status);
 
         return ResponseEntity.ok(booking);
     }

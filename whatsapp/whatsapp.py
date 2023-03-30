@@ -19,7 +19,7 @@ def callback(channel, method, properties, body):
 # Microservices: Place Booking, Process Booking
 def sendWhatsapp(data):
     sid = 'AC0db8e941786b67830951b69976e1264e'
-    authToken = '344c5ceb581911b18617603da7875743'
+    authToken = '9caa9f89094c3a08755321b82d061de3'
     client = Client(sid, authToken)
 
     ownerPhone = 'whatsapp:+65' + data['ownerPhone']

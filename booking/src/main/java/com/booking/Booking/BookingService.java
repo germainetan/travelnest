@@ -50,8 +50,8 @@ public class BookingService {
     }
 
     // return booking record by renterID and booking_status
-    public List<Booking> get_by_renter_and_booking_status(Integer renterID, String booking_status, LocalDateTime localDateTime){
-        return bookingRepository.get_by_renter_and_booking_status(renterID, booking_status, localDateTime);
+    public List<Booking> get_by_renter_and_booking_status(Integer renterID, String booking_status){
+        return bookingRepository.get_by_renter_and_booking_status(renterID, booking_status);
     }
 
     @Transactional

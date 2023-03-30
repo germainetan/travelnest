@@ -17,7 +17,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     @Query("SELECT b FROM Booking b WHERE b.booking_status = :booking_status AND b.ownerID = :ownerID")
     List<Booking> get_by_owner_and_booking_status(@Param("ownerID") Integer ownerID, @Param("booking_status") String booking_status);
 
-    @Query("SELECT b FROM Booking b WHERE b.booking_status = :booking_status AND b.renterID = :renterID AND b.start_datetime > :localDateTime")
-    List<Booking> get_by_renter_and_booking_status(@Param("renterID") Integer renterID, @Param("booking_status") String booking_status, LocalDateTime localDateTime);
+    @Query("SELECT b FROM Booking b WHERE b.booking_status = :booking_status AND b.renterID = :renterID")
+    List<Booking> get_by_renter_and_booking_status(@Param("renterID") Integer renterID, @Param("booking_status") String booking_status);
 
 }
