@@ -21,10 +21,12 @@ public class BookingService {
 
         Integer bookingID = booking.getBookingID();
 
-        boolean exits = bookingRepository.existsById(bookingID);
+        if (bookingID != null) {
+            boolean exits = bookingRepository.existsById(bookingID);
 
-        if (exits) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Booking with bookingID " + bookingID + " exists already. Please check if you had accidentally parsed in bookingID in your request body");
+            if (exits) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Booking with bookingID " + bookingID + " exists already. Please check if you had accidentally parsed in bookingID in your request body");
+            }
         }
 
         return bookingRepository.save(booking);
