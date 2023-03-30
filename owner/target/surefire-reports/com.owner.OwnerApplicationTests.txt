@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.owner.OwnerApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.127 s - in com.owner.OwnerApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.429 s - in com.owner.OwnerApplicationTests
