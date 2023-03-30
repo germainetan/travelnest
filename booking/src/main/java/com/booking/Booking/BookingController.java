@@ -39,6 +39,7 @@ public class BookingController {
     }
 
 
+
     // return all propertyID that has booking status in ("Confirmed", "Pending")
     // and by query_start_datetime < record_end_datetime and query_start_datetime > record_start_datetime
     @GetMapping("/search")

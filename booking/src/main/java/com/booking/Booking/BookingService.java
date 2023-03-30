@@ -18,6 +18,15 @@ public class BookingService {
 
     // create a booking record
     public Booking add_booking(Booking booking) {
+
+        Integer bookingID = booking.getBookingID();
+
+        boolean exits = bookingRepository.existsById(bookingID);
+
+        if (exits) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Booking with bookingID " + bookingID + " exists already. Please check if you had accidentally parsed in bookingID in your request body");
+        }
+
         return bookingRepository.save(booking);
     }
 
@@ -32,7 +41,7 @@ public class BookingService {
         boolean exits = bookingRepository.existsById(bookingID);
 
         if (!exits) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking with bookingID " + bookingID + "does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking with bookingID " + bookingID + " does not exist");
         }
 
         return bookingRepository.findById(bookingID);
