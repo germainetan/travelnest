@@ -9,11 +9,11 @@ from invokes import invoke_http
 app = Flask(__name__)
 CORS(app)
 
-payment_URL = "http://payment-container:8084/payment/"
-booking_URL = "http://booking-container:8080/booking"
-property_URL = "http://property-container:8083/property/"
-owner_URL = "http://owner-container:8081/owner/"
-renter_URL = "http://renter-container:8082/renter/"
+payment_URL = "http://payment:8084/payment/"
+booking_URL = "http://booking:8080/booking"
+property_URL = "http://property:8083/property/"
+owner_URL = "http://owner:8081/owner/"
+renter_URL = "http://renter:8082/renter/"
 
 
 @app.route("/accept_booking", methods=['POST'])
