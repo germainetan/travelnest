@@ -1,6 +1,16 @@
 
 version: '3.8'
+
+volumes:
+  rabbitmq_data:
+
 services:
+# simple microservices listening on ports: 8080 - 8084
+
+  #################################################
+  # Booking: Booking microservice
+  #################################################
+
   booking:
     image: booking:1.0
     container_name: booking-container
@@ -12,6 +22,10 @@ services:
       - "8080:8080"
     environment:
           - dbname=travelnest:travelnest@host.docker.internal
+
+  #################################################
+  # Owner: Owner microservice
+  #################################################
 
   owner:
     image: owner:1.0
@@ -25,6 +39,10 @@ services:
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
+  #################################################
+  # Renter: Renter microservice
+  #################################################
+
   renter:
     image: renter:1.0
     container_name: renter-container
@@ -36,6 +54,10 @@ services:
       - "8082:8082"
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
+
+  #################################################
+  # Property: Property microservice
+  #################################################
 
   property:
     image: property:1.0
@@ -49,6 +71,10 @@ services:
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
+  #################################################
+  # Payment: Payment microservice
+  #################################################
+
   payment:
     image: payment:1.0
     container_name: payment-container
@@ -61,25 +87,110 @@ services:
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
-  place_booking:
-    image: place_booking:1.0
-    container_name: place_booking-container
-    build:
-      context: ./place_booking
-      dockerfile: place_booking.Dockerfile
+  ####################################
+  # RabbitMQ: The messaging broker   
+  ####################################
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: esd-rabbit
     restart: always
     ports:
-      - "8087:5000"
+      - "5672:5672"
+      - "15672:15672"
+    volumes: 
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  #################################################
+  # Whatsapp: Whatsapp microservice
+  #################################################
+
+  whatsapp:
+    image: whatsapp:1.0
+    container_name: whatsapp-container
+    build:
+      context: ./whatsapp
+      dockerfile: whatsapp.Dockerfile
+    restart: always
     depends_on:
-      - payment
-      - property
-      - booking
-      - renter
-      - owner
+      - rabbitmq
     environment:
-      # property_URL: http://property:8083/property
-      # booking_URL: http://booking:8080/booking
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
       PYTHONUNBUFFERED: 1
+
+# complex microservices listening on ports: 8085 - 8088
+
+  #################################################
+  # Check Booking: Check Booking microservice
+  #################################################
+
+  # check_booking:
+  #   image: check_booking:1.0
+  #   container_name: check_booking-container
+  #   build:
+  #     context: ./check_booking
+  #     dockerfile: ./check_booking.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8085:8085"
+  #   depends_on:
+  #     - property
+  #     - booking
+  #     - renter
+  #   environment:
+  #     property_URL: http://property:8083/property
+  #     booking_URL: http://booking:8080/booking
+  #     renter_URL: http://renter:8082/renter
+  #     PYTHONUNBUFFERED: 1
+
+  #################################################
+  # Filter Property: Filter Property microservice
+  #################################################
+
+  # filter_property:
+  #   image: filter_property:1.0
+  #   container_name: filter_property-container
+  #   build:
+  #     context: ./filter_property
+  #     dockerfile: filter_property.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8086:8086"
+  #   depends_on:
+  #     - property
+  #     - booking
+  #   environment:
+  #     property_URL: http://property:8083/property
+  #     booking_URL: http://booking:8080/booking
+  #     PYTHONUNBUFFERED: 1
+
+  #################################################
+  # Place Booking: Place Booking microservice
+  #################################################
+
+  # place_booking:
+  #   image: place_booking:1.0
+  #   container_name: place_booking-container
+  #   build:
+  #     context: ./place_booking
+  #     dockerfile: place_booking.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8087:5000"
+  #   depends_on:
+  #     - payment
+  #     - property
+  #     - booking
+  #     - renter
+  #     - owner
+  #   environment:
+  #     # property_URL: http://property:8083/property
+  #     # booking_URL: http://booking:8080/booking
+  #     PYTHONUNBUFFERED: 1
+
+  #################################################
+  # Process Booking: Process Booking microservice
+  #################################################
 
   process_booking:
     image: process_booking:1.0
@@ -96,24 +207,12 @@ services:
       - booking
       - renter
       - owner
+      - rabbitmq
+      - whatsapp
     environment:
       # property_URL: http://property:8083/property
       # booking_URL: http://booking:8080/booking
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
-  # filter_property:
-  #   image: filter_property:1.0
-  #   container_name: filter_property-container
-  #   build:
-  #     context: ./
-  #     dockerfile: ./filter_property/filter_property.Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "8086:8086"
-  #   depends_on:
-  #     - property
-  #     - booking
-  #   environment:
-  #     property_URL: http://property:8083/property
-  #     booking_URL: http://booking:8080/booking
-  #     PYTHONUNBUFFERED: 1
