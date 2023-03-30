@@ -33,19 +33,13 @@ public class Property {
     private String review;
     @Column
     private double rating;
-
-
-    // Constructor
+    @Column
+    private String facilities;
 
     public Property() {
     }
 
-    public Property(Integer propertyID, String title,
-                    String ownerID, String country,
-                    String city, double latitude,
-                    double longitude, String address,
-                    String beds, Integer price, Integer guests,
-                    String review, double rating) {
+    public Property(Integer propertyID, String title, String ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
         this.propertyID = propertyID;
         this.title = title;
         this.ownerID = ownerID;
@@ -59,13 +53,10 @@ public class Property {
         this.guests = guests;
         this.review = review;
         this.rating = rating;
+        this.facilities = facilities;
     }
 
-    public Property(String title, String ownerID,
-                    String country, String city, double latitude,
-                    double longitude, String address, String beds,
-                    Integer price, Integer guests, String review,
-                    double rating) {
+    public Property(String title, String ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
         this.title = title;
         this.ownerID = ownerID;
         this.country = country;
@@ -78,9 +69,8 @@ public class Property {
         this.guests = guests;
         this.review = review;
         this.rating = rating;
+        this.facilities = facilities;
     }
-
-    // Getter and Setter
 
     public Integer getPropertyID() {
         return propertyID;
@@ -134,7 +124,7 @@ public class Property {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -182,14 +172,22 @@ public class Property {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public String getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(String facilities) {
+        this.facilities = facilities;
     }
 
     @Override
     public String toString() {
         return "Property{" +
-                "propertyID='" + propertyID + '\'' +
+                "propertyID=" + propertyID +
                 ", title='" + title + '\'' +
                 ", ownerID='" + ownerID + '\'' +
                 ", country='" + country + '\'' +
@@ -202,6 +200,7 @@ public class Property {
                 ", guests=" + guests +
                 ", review='" + review + '\'' +
                 ", rating=" + rating +
+                ", facilities='" + facilities + '\'' +
                 '}';
     }
 }
