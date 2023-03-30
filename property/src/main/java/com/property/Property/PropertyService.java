@@ -26,7 +26,7 @@ public class PropertyService {
         boolean exits = propertyRepository.existsById(propertyID);
 
         if (!exits) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Property with propertyID " + propertyID + "does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Property with propertyID " + propertyID + " does not exist");
         }
 
         return propertyRepository.findById(propertyID);
