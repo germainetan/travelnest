@@ -60,33 +60,39 @@ def processBooking(order):
     # Invoke the Payment microservice
     # Retrieve paymentID from orderID
     print('\n-----Invoking Payment microservice-----')
-    payment_result = invoke_http(payment_URL + "getpaymentid/" + orderid, method='GET')
+    # payment_result = invoke_http(payment_URL + "getpaymentid/" + orderid, method='GET')
+    payment_result = invoke_http("http://payment-container:8084/payment/getpaymentid/" + orderid, method='GET')
+    print(payment_result)
     paymentid = payment_result["paymentID"]
     print('Paymentid:', paymentid)
 
     # Invoke the Payment microservice again
     # Authorize order from orderID
     print('\n-----Invoking Payment microservice-----')
-    payment_authorization_result = invoke_http(payment_URL + "api/orders/" + orderid + "/authorize", method='POST')
+    # payment_authorization_result = invoke_http(payment_URL + "api/orders/" + orderid + "/authorize", method='POST')
+    payment_authorization_result = invoke_http("http://payment-container:8084/payment/api/orders/" + orderid + "/authorize", method='POST')
     print('payment_authorization_result:', payment_authorization_result)
 
     # Invoke the Property microservice
     # Retrieve ownerID from propertyID
     print('\n\n-----Invoking Property microservice-----')
-    property_result = invoke_http(property_URL + propertyid, method='GET')
+    # property_result = invoke_http(property_URL + propertyid, method='GET')
+    property_result = invoke_http("http://property-container:8083/property/" + propertyid, method='GET')
     print('property_result:', property_result["ownerID"])
     ownerid = str(property_result["ownerID"])
 
     # Invoke the Owner microservice
     # Retrieve Owner's phone from OwnerID
     print('\n\n-----Invoking Owner microservice-----')
-    owner_result = invoke_http(owner_URL + ownerid, method='GET')
+    # owner_result = invoke_http(owner_URL + ownerid, method='GET')
+    owner_result = invoke_http("http://owner-container:8081/owner/" + ownerid, method='GET')
     print('owner_result:', owner_result["phone"])
 
     # Invoke the Renter microservice
     # Retrieve Renter's phone from RenterID
     print('\n\n-----Invoking Renter microservice-----')
-    renter_result = invoke_http(renter_URL + renterid, method='GET')
+    # renter_result = invoke_http(renter_URL + renterid, method='GET')
+    renter_result = invoke_http("http://renter-container:8082/renter/" + renterid, method='GET')
     print('renter_result:', renter_result["phone"])
 
     # Craft a JSON payload to create a new booking record
@@ -101,7 +107,8 @@ def processBooking(order):
     # Invoke the Booking microservice
     # Create new Booking Record
     print('\n\n-----Invoking Booking microservice-----')
-    booking_result = invoke_http(booking_URL, method='POST', json=payload)
+    # booking_result = invoke_http(booking_URL, method='POST', json=payload)
+    booking_result = invoke_http("http://booking-container:8080/booking", method='POST', json=payload)
     print('booking_result:', booking_result)
 
     # Invoke the Email microservice

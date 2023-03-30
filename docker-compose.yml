@@ -61,22 +61,59 @@ services:
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
-
-  filter_property:
-    image: filter_property:1.0
-    container_name: filter_property-container
+  place_booking:
+    image: place_booking:1.0
+    container_name: place_booking-container
     build:
-      # context: ./
-      # dockerfile: ./filter_property/filter_property.Dockerfile
-      context: ./filter_property
-      dockerfile: filter_property.Dockerfile
+      context: ./place_booking
+      dockerfile: place_booking.Dockerfile
     restart: always
     ports:
-      - "8086:8086"
+      - "8087:5000"
     depends_on:
+      - payment
       - property
       - booking
+      - renter
+      - owner
     environment:
-      property_URL: http://property:8083/property
-      booking_URL: http://booking:8080/booking
+      # property_URL: http://property:8083/property
+      # booking_URL: http://booking:8080/booking
       PYTHONUNBUFFERED: 1
+
+  process_booking:
+    image: process_booking:1.0
+    container_name: process_booking-container
+    build:
+      context: ./process_booking
+      dockerfile: process_booking.Dockerfile
+    restart: always
+    ports:
+      - "8088:5100"
+    depends_on:
+      - payment
+      - property
+      - booking
+      - renter
+      - owner
+    environment:
+      # property_URL: http://property:8083/property
+      # booking_URL: http://booking:8080/booking
+      PYTHONUNBUFFERED: 1
+
+  # filter_property:
+  #   image: filter_property:1.0
+  #   container_name: filter_property-container
+  #   build:
+  #     context: ./
+  #     dockerfile: ./filter_property/filter_property.Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8086:8086"
+  #   depends_on:
+  #     - property
+  #     - booking
+  #   environment:
+  #     property_URL: http://property:8083/property
+  #     booking_URL: http://booking:8080/booking
+  #     PYTHONUNBUFFERED: 1
