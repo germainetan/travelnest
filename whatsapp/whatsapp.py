@@ -25,7 +25,7 @@ def sendWhatsapp(data):
     ownerPhone = 'whatsapp:+65' + data['ownerPhone']
     renterPhone = 'whatsapp:+65' + data['renterPhone']
 
-    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'98242683'}
+    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'87276883'}
     if data['bookingStatus'] == 'pending':
         ownerMsg = f"[no reply] From Travelnest: Hi {data['ownerFullname']}, there is a booking BookingID: {data['bookingid']} awaiting your approval. Please login to view the booking."
         renterMsg = f"[no reply] From Travelnest: Hi {data['renterFullname']}, thank you for booking with us! Your payment is currently kept on hold and you will receive the status of your booking BookingID: {data['bookingid']} within 3 working days."
