@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {

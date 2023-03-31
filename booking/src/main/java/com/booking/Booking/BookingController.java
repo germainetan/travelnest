@@ -12,6 +12,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/booking")
 public class BookingController {

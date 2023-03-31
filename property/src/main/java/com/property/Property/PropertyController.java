@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.OK;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/property")
 public class PropertyController {
