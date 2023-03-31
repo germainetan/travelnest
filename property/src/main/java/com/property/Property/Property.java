@@ -12,7 +12,7 @@ public class Property {
     @Column
     private String title;
     @Column
-    private String ownerID;
+    private Integer ownerID;
     @Column
     private String country;
     @Column
@@ -39,7 +39,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(Integer propertyID, String title, String ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
+    public Property(Integer propertyID, String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
         this.propertyID = propertyID;
         this.title = title;
         this.ownerID = ownerID;
@@ -56,7 +56,7 @@ public class Property {
         this.facilities = facilities;
     }
 
-    public Property(String title, String ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
+    public Property(String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
         this.title = title;
         this.ownerID = ownerID;
         this.country = country;
@@ -88,11 +88,11 @@ public class Property {
         this.title = title;
     }
 
-    public String getOwnerID() {
+    public Integer getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(Integer ownerID) {
         this.ownerID = ownerID;
     }
 

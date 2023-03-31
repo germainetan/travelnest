@@ -117,6 +117,8 @@ services:
       rabbit_host: rabbitmq
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
+      SID: ${SID}
+      AUTHTOKEN: ${AUTHTOKEN}
 
 # complex microservices listening on ports: 8085 - 8088
 
