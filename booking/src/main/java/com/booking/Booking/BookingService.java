@@ -1,7 +1,6 @@
 package com.booking.Booking;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,8 +12,11 @@ import java.util.Optional;
 @Service
 public class BookingService {
 
-    @Autowired
-    private BookingRepository bookingRepository;
+    private final BookingRepository bookingRepository;
+
+    public BookingService(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
+    }
 
     // create a booking record
     public Booking add_booking(Booking booking) {
@@ -48,8 +50,8 @@ public class BookingService {
 
     // return all propertyID that has booking status in ("Confirmed", "Pending") and by query_start_datetime < record_end_datetime
 
-    public List<String> get_by_filter_condition(List <String> status_list, LocalDateTime start_datetime){
-        return bookingRepository.find_Booking_by_Status_and_DateTime(status_list, start_datetime);
+    public List<String> get_by_filter_condition(List <String> status_list, LocalDateTime start_datetime, LocalDateTime end_datetime){
+        return bookingRepository.find_Booking_by_Status_and_DateTime(status_list, start_datetime, end_datetime);
     }
 
     // return booking record by ownerID and booking_status

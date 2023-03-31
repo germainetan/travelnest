@@ -1,6 +1,5 @@
 package com.owner.Owner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,11 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/owner")
 public class OwnerController {
 
-    @Autowired
-    private OwnerService ownerService;
+    private final OwnerService ownerService;
+
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
+    }
 
     // get all owner
     @GetMapping()

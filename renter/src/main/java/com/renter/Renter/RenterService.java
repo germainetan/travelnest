@@ -1,6 +1,5 @@
 package com.renter.Renter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @Service
 public class RenterService {
 
-    @Autowired
-    private RenterRepository renterRepository;
+    private final RenterRepository renterRepository;
+
+    public RenterService(RenterRepository renterRepository) {
+        this.renterRepository = renterRepository;
+    }
 
     // get all owners
     public List<Renter> get_all_renters(){

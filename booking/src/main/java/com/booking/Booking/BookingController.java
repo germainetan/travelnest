@@ -1,7 +1,6 @@
 package com.booking.Booking;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,11 @@ import static org.springframework.http.HttpStatus.OK;
 public class BookingController {
 
     //placeholder
-    @Autowired
-    private BookingService bookingService;
+    private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     // create a booking record
     @PostMapping()
@@ -45,11 +47,13 @@ public class BookingController {
     // and by query_start_datetime < record_end_datetime and query_start_datetime > record_start_datetime
     @GetMapping("/search")
     public ResponseEntity<List<String>> get_by_filter_condition (
-            @RequestParam(required = false) String start_datetime) {
-        LocalDateTime parsedDateTime = LocalDateTime.parse(start_datetime);
+            @RequestParam String start_datetime,
+            @RequestParam String end_datetime) {
+        LocalDateTime parsed_start_datetime = LocalDateTime.parse(start_datetime);
+        LocalDateTime parsed_end_datetime = LocalDateTime.parse(end_datetime);
         List <String> status_list = List.of("confirmed", "pending");
 
-        List <String> booking = bookingService.get_by_filter_condition(status_list , parsedDateTime);
+        List <String> booking = bookingService.get_by_filter_condition(status_list , parsed_start_datetime, parsed_end_datetime);
 
         return ResponseEntity.ok(booking);
     }

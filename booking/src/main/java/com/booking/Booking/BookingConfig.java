@@ -1,6 +1,5 @@
 package com.booking.Booking;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -132,7 +131,7 @@ public class BookingConfig {
                 bookingRepository.saveAll(
                         List.of(B001, B002, B003, B004, B005, B006, B007, B008, B009, B010, B011)
                 );
-            };
+            }
         };
     }
 }

@@ -1,6 +1,5 @@
 package com.renter.Renter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,11 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/renter")
 public class RenterController {
 
-    @Autowired
-    private RenterService renterService;
+    private final RenterService renterService;
+
+    public RenterController(RenterService renterService) {
+        this.renterService = renterService;
+    }
 
     // get all renter
     @GetMapping()

@@ -33,13 +33,11 @@ public class Property {
     private String review;
     @Column
     private double rating;
-    @Column
-    private String facilities;
 
     public Property() {
     }
 
-    public Property(Integer propertyID, String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
+    public Property(Integer propertyID, String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating) {
         this.propertyID = propertyID;
         this.title = title;
         this.ownerID = ownerID;
@@ -53,10 +51,9 @@ public class Property {
         this.guests = guests;
         this.review = review;
         this.rating = rating;
-        this.facilities = facilities;
     }
 
-    public Property(String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String facilities) {
+    public Property(String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating) {
         this.title = title;
         this.ownerID = ownerID;
         this.country = country;
@@ -69,7 +66,6 @@ public class Property {
         this.guests = guests;
         this.review = review;
         this.rating = rating;
-        this.facilities = facilities;
     }
 
     public Integer getPropertyID() {
@@ -176,20 +172,12 @@ public class Property {
         this.rating = rating;
     }
 
-    public String getFacilities() {
-        return facilities;
-    }
-
-    public void setFacilities(String facilities) {
-        this.facilities = facilities;
-    }
-
     @Override
     public String toString() {
         return "Property{" +
                 "propertyID=" + propertyID +
                 ", title='" + title + '\'' +
-                ", ownerID='" + ownerID + '\'' +
+                ", ownerID=" + ownerID +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", latitude=" + latitude +
@@ -200,7 +188,6 @@ public class Property {
                 ", guests=" + guests +
                 ", review='" + review + '\'' +
                 ", rating=" + rating +
-                ", facilities='" + facilities + '\'' +
                 '}';
     }
 }

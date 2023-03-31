@@ -188,8 +188,11 @@ services:
       - rabbitmq
       - whatsapp
     environment:
-      # property_URL: http://property:8083/property
-      # booking_URL: http://booking:8080/booking
+      payment_URL : "http://payment:8084/payment"
+      booking_URL : "http://booking:8080/booking"
+      property_URL : "http://property:8083/property"
+      owner_URL : "http://owner:8081/owner"
+      renter_URL : "http://renter:8082/renter"
       rabbit_host: rabbitmq
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
@@ -216,8 +219,11 @@ services:
       - rabbitmq
       - whatsapp
     environment:
-      # property_URL: http://property:8083/property
-      # booking_URL: http://booking:8080/booking
+      payment_URL : "http://payment:8084/payment"
+      booking_URL : "http://booking:8080/booking"
+      property_URL : "http://property:8083/property"
+      owner_URL : "http://owner:8081/owner"
+      renter_URL : "http://renter:8082/renter"
       rabbit_host: rabbitmq
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1

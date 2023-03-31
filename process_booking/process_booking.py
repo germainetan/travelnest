@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, json
 from flask_cors import CORS
 
 import os, sys
+from os import environ
 
 import requests
 from invokes import invoke_http
@@ -12,11 +13,11 @@ import pika
 app = Flask(__name__)
 CORS(app)
 
-payment_URL = "http://payment:8084/payment/"
-booking_URL = "http://booking:8080/booking/" 
-property_URL = "http://property:8083/property/"
-owner_URL = "http://owner:8081/owner/"
-renter_URL = "http://renter:8082/renter/"
+property_URL = environ.get("property_URL") or "http://localhost:8083/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
+renter_URL = environ.get("renter_URL") or "http://localhost:8082/renter"
+payment_URL = environ.get("payment_URL") or "http://localhost:8084/payment"
+owner_URL = environ.get("owner_URL") or "http://localhost:8081/owner"
 
 
 @app.route("/process_booking", methods=['POST'])
@@ -59,7 +60,7 @@ def processBooking(check_booking):
     # Retrieve paymentID, renterID
     print('\n-----Invoking Booking microservice-----')
     
-    booking_result = invoke_http(booking_URL + f"{bookingid}" , method='GET')
+    booking_result = invoke_http(booking_URL + f"/{bookingid}" , method='GET')
 
     renterid = booking_result["renterID"]
     paymentid = booking_result["paymentID"]
@@ -71,12 +72,12 @@ def processBooking(check_booking):
     # Invoke the Payment microservice
     # Get AuthorizationID from paymentID
     print('\n-----Invoking Payment microservice-----')
-    payment_result = invoke_http(payment_URL + f"{paymentid}", method='GET')
+    payment_result = invoke_http(payment_URL + f"/{paymentid}", method='GET')
 
     if booking_status == "confirmed":
         authorizationid = payment_result["authorizationID"]
         print('authorizationid:', authorizationid)
-        payment_param = f"api/orders/{authorizationid}/authorization/capture"
+        payment_param = f"/api/orders/{authorizationid}/authorization/capture"
 
         return_message = "Booking Accepted. Payment Captured."
 
@@ -84,7 +85,7 @@ def processBooking(check_booking):
     if booking_status == "cancelled":
         captureid = payment_result["captureID"]
         print('captureid:', captureid)
-        payment_param = f"api/orders/{captureid}/refund"
+        payment_param = f"/api/orders/{captureid}/refund"
 
         return_message = "Refund Successful"
 
@@ -92,7 +93,7 @@ def processBooking(check_booking):
     if booking_status == "rejected":
         authorizationid = payment_result["authorizationID"]
         print('authorizationid:', authorizationid)
-        payment_param = f"api/orders/{authorizationid}/authorization/void"
+        payment_param = f"/api/orders/{authorizationid}/authorization/void"
 
         return_message = "Booking Rejection Successful"
 
@@ -107,13 +108,13 @@ def processBooking(check_booking):
     # Invoke the Booking microservice
     # Update booking status
     print('\n-----Invoking Booking microservice-----')
-    booking_result = invoke_http(booking_URL + f"{bookingid}?booking_status={booking_status}", method='PUT')
+    booking_result = invoke_http(booking_URL + f"/{bookingid}?booking_status={booking_status}", method='PUT')
 
 
     # Invoke the Renter microservice
     # Retrieve Renter's phone from RenterID
     print('\n\n-----Invoking Renter microservice-----')
-    renter_result = invoke_http(renter_URL + f"{renterid}", method='GET')
+    renter_result = invoke_http(renter_URL + f"/{renterid}", method='GET')
     print('renter_phone:', renter_result["phone"])
 
     # Send to AMQP
@@ -131,7 +132,7 @@ def processBooking(check_booking):
     if booking_status == "cancelled":
 
         print('\n\n-----Invoking Owner microservice-----')
-        owner_result = invoke_http(owner_URL + f"{ownerid}", method='GET')
+        owner_result = invoke_http(owner_URL + f"/{ownerid}", method='GET')
         print('owner_result:', owner_result)
 
         message["ownerFullname"] = owner_result["fullName"]

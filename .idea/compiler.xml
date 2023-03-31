@@ -8,9 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="owner" />
-        <module name="property" />
         <module name="travelnest" />
         <module name="booking" />
+        <module name="property" />
         <module name="payment" />
         <module name="renter" />
       </profile>

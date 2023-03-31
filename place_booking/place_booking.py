@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, json
 from flask_cors import CORS
 
 import os, sys
+from os import environ
 
 import requests
 from invokes import invoke_http
@@ -12,11 +13,11 @@ import pika
 app = Flask(__name__)
 CORS(app)
 
-payment_URL = "http://payment:8084/payment/"
-booking_URL = "http://booking:8080/booking"
-property_URL = "http://property:8083/property/"
-owner_URL = "http://owner:8081/owner/"
-renter_URL = "http://renter:8082/renter/"
+property_URL = environ.get("property_URL") or "http://localhost:8083/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
+renter_URL = environ.get("renter_URL") or "http://localhost:8082/renter"
+payment_URL = environ.get("payment_URL") or "http://localhost:8084/payment"
+owner_URL = environ.get("owner_URL") or "http://localhost:8081/owner"
 
 
 @app.route("/place_booking", methods=['POST'])
@@ -64,7 +65,7 @@ def processBooking(check_booking):
     # Retrieve paymentID from orderID
     print('\n-----Invoking Payment microservice-----')
 
-    payment_result = invoke_http(payment_URL + f"getpaymentid/{orderid}", method='GET')
+    payment_result = invoke_http(payment_URL + f"/getpaymentid/{orderid}", method='GET')
     print(payment_result)
     paymentid = payment_result["paymentID"]
     print('Paymentid:', paymentid)
@@ -73,14 +74,14 @@ def processBooking(check_booking):
     # Authorize order from orderID
     print('\n-----Invoking Payment microservice-----')
     # payment_authorization_result = invoke_http(payment_URL + "api/orders/" + orderid + "/authorize", method='POST')
-    payment_authorization_result = invoke_http(payment_URL + f"api/orders/{orderid}/authorize", method='POST')
+    payment_authorization_result = invoke_http(payment_URL + f"/api/orders/{orderid}/authorize", method='POST')
     print('payment_authorization_result:', payment_authorization_result)
 
     # Invoke the Property microservice
     # Retrieve ownerID from propertyID
     print('\n\n-----Invoking Property microservice-----')
     # property_result = invoke_http(property_URL + propertyid, method='GET')
-    property_result = invoke_http(property_URL + f"{propertyid}", method='GET')
+    property_result = invoke_http(property_URL + f"/{propertyid}", method='GET')
     print('property_result:', property_result)
     ownerid = property_result["ownerID"]
 
@@ -88,14 +89,14 @@ def processBooking(check_booking):
     # Retrieve Owner's phone from OwnerID
     print('\n\n-----Invoking Owner microservice-----')
     # owner_result = invoke_http(owner_URL + ownerid, method='GET')
-    owner_result = invoke_http(owner_URL + f"{ownerid}", method='GET')
+    owner_result = invoke_http(owner_URL + f"/{ownerid}", method='GET')
     print('owner_result:', owner_result)
 
     # Invoke the Renter microservice
     # Retrieve Renter's phone from RenterID
     print('\n\n-----Invoking Renter microservice-----')
     # renter_result = invoke_http(renter_URL + renterid, method='GET')
-    renter_result = invoke_http(renter_URL + f"{renterid}", method='GET')
+    renter_result = invoke_http(renter_URL + f"/{renterid}", method='GET')
     print('renter_result:', renter_result)
 
     # Craft a JSON payload to create a new booking record

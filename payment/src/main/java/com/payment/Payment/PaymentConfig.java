@@ -1,6 +1,6 @@
 package com.payment.Payment;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,6 @@ public class PaymentConfig {
     public CommandLineRunner commandLineRunner(PaymentRepository paymentRepository) {
         return args -> {
             if (paymentRepository.count() == 0) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
                 Payment P001 = new Payment(
                         "03S91057B30291626",
@@ -127,11 +126,10 @@ public class PaymentConfig {
                         null
                 );
 
-
                 paymentRepository.saveAll(
                         List.of(P001, P002, P003, P004, P005, P006, P007, P008, P009, P010, P011)
                 );
-            };
+            }
         };
     }
 }

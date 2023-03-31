@@ -54,10 +54,11 @@ def processFilterProperty(book_filter):
     guests = book_filter["guests"]
     price = book_filter["price"]
     start_datetime = book_filter["start_datetime"]
+    end_datetime = book_filter["end_datetime"]
 
     # defining the paramters for the microservices
     prop_param = f"/search?country={country}&guests={guests}&price={price}"
-    book_param = f"/search?start_datetime={start_datetime}"
+    book_param = f"/search?start_datetime={start_datetime}&end_datetime={end_datetime}"
 
     # invoke property microservice
     print('\n-----Invoking property microservice-----')
@@ -79,6 +80,7 @@ def processFilterProperty(book_filter):
     for prop in property_result:
         prop_list.append(prop["propertyID"])
 
+    print(prop_list)
 
     for i in range(len(prop_list)):
         
@@ -98,75 +100,6 @@ def processFilterProperty(book_filter):
             "code": 404,
             "message": "There are no available properties that match your requirements. Please reselect your filters"
         }
-
-
-    
-    
-
-# def filter_property():
-    # Simple check of input format and data of the request are JSON
-
-    # values here are assumed to be not null
-    # country = request.args.get("country")
-    # guests = request.args.get("guests")
-    # start_datetime = request.args.get("start_datetime")
-
-    # print("\nReceived a view property request in JSON:")
-
-    # if country and guests and start_datetime:
-
-    #     # defining the paramters for the microservices
-    #     prop_param = f"/search?country={country}&guests={guests}"
-    #     book_param = f"/search?start_datetime={start_datetime}"
-
-    #     # invoke property microservice
-    #     print('\n-----Invoking property microservice-----')
-
-    #     # returns a list of dictionary
-    #     property_result = invoke_http(property_URL + prop_param , method='GET')
-    #     print('property_result:', property_result)
-
-        
-    #     # invoke booking microservice
-    #     print('\n-----Invoking booking microservice-----')
-
-    #     # returns a list 
-    #     booking_result = invoke_http(booking_URL + book_param , method='GET')
-    #     print('booking_result:', booking_result)
-
-    #     prop_list = []
-
-    #     for prop in property_result:
-    #         prop_list.append(prop["propertyID"])
-
-
-    #     for i in range(len(prop_list)):
-            
-    #         if str(prop_list[i]) in booking_result:
-    #             property_result.pop(i) 
-
-    #     if len(property_result):
-    #         return jsonify(
-    #             {
-    #                 "code": 200,
-    #                 "data" : {
-    #                     "property_result" : property_result
-    #                 }
-    #             }
-    #         )
-    #     return jsonify(
-    #         {
-    #             "code": 404,
-    #             "message": "There are no available properties that match your requirements. Please reselect your filters"
-    #         }
-    #     ), 404
-    
-    # return jsonify(
-    #     {
-    #         "code": 404,
-    #         "message": "Error: Insufficient Arguments"
-    #     }
-    # ), 404
 
 
 # Execute this program if it is run as a main script (not by 'import')

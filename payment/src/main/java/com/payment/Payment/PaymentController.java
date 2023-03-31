@@ -3,12 +3,7 @@ package com.payment.Payment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.payment.Payment.Payment;
-import com.payment.Payment.PaymentRepository;
-import com.payment.Payment.PaymentService;
-import lombok.AllArgsConstructor;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -25,13 +20,16 @@ import java.util.logging.Logger;
 @RequestMapping("/payment")
 public class PaymentController {
 
-    @Autowired
-    private PaymentService paymentService;
-    @Autowired
-    private PaymentRepository repo;
+    private final PaymentService paymentService;
+    private final PaymentRepository repo;
 
     private final String  BASE = "https://api-m.sandbox.paypal.com";
     private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    public PaymentController(PaymentService paymentService, PaymentRepository repo) {
+        this.paymentService = paymentService;
+        this.repo = repo;
+    }
 
     private String getAuth(String client_id, String app_secret) {
         String auth = client_id + ":" + app_secret;
@@ -43,8 +41,7 @@ public class PaymentController {
     {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String time_stamp = formatter.format(date);
-        return time_stamp;
+        return formatter.format(date);
     }
 
     // Get all payments in db
@@ -75,8 +72,7 @@ public class PaymentController {
     public Object getAuthorizationId(@PathVariable("paymentId") Integer paymentId) {
         Payment paymentdb = repo.findByPaymentID(paymentId).get();
         String res = paymentdb.getAuthorizationID();
-        Map<String, String> map = Collections.singletonMap("authorizationID", res);
-        return map;
+        return Collections.singletonMap("authorizationID", res);
     }
 
     // Get OrderID from paymentID
@@ -85,8 +81,7 @@ public class PaymentController {
     public Object getOrderId(@PathVariable("paymentId") Integer paymentId) {
         Payment paymentdb = repo.findByPaymentID(paymentId).get();
         String res = paymentdb.getOrderID();
-        Map<String, String> map = Collections.singletonMap("orderID", res);
-        return map;
+        return Collections.singletonMap("orderID", res);
     }
 
     // Get CaptureID from paymentID
@@ -95,8 +90,7 @@ public class PaymentController {
     public Object getCaptureId(@PathVariable("paymentId") Integer paymentId) {
         Payment paymentdb = repo.findByPaymentID(paymentId).get();
         String res = paymentdb.getCaptureID();
-        Map<String, String> map = Collections.singletonMap("captureID", res);
-        return map;
+        return Collections.singletonMap("captureID", res);
     }
 
     // Get RefundID from paymentID
@@ -105,8 +99,7 @@ public class PaymentController {
     public Object getRefundId(@PathVariable("paymentId") Integer paymentId) {
         Payment paymentdb = repo.findByPaymentID(paymentId).get();
         String res = paymentdb.getRefundID();
-        Map<String, String> map = Collections.singletonMap("refundID", res);
-        return map;
+        return Collections.singletonMap("refundID", res);
     }
 
     // Get Access Token (For Authentication)
@@ -153,7 +146,7 @@ public class PaymentController {
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/checkout/orders/" + orderId + "/capture",
@@ -184,7 +177,7 @@ public class PaymentController {
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/checkout/orders/" + orderId + "/authorize",
@@ -238,7 +231,7 @@ public class PaymentController {
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/payments/authorizations/" + authorizationId + "/capture",
@@ -278,7 +271,7 @@ public class PaymentController {
     // Void authorized payment (For when seller rejects booking)
     @RequestMapping(value="/api/orders/{authorizationId}/authorization/void", method = RequestMethod.POST)
     @CrossOrigin
-    public Object voidAuthorizedPayment(@PathVariable("authorizationId") String authorizationId) throws JsonProcessingException {
+    public Object voidAuthorizedPayment(@PathVariable("authorizationId") String authorizationId) {
         String accessToken = generateAccessToken();
         HttpHeaders headers = new HttpHeaders();
         RestTemplate restTemplate = new RestTemplate();
@@ -288,7 +281,7 @@ public class PaymentController {
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/payments/authorizations/" + authorizationId + "/void",
@@ -329,7 +322,7 @@ public class PaymentController {
         headers.add("Accept", "application/json");
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/payments/captures/" + captureId + "/refund",
@@ -382,7 +375,7 @@ public class PaymentController {
         //JSON String
 //        String requestJson = "{\"intent\":\"AUTHORIZE\",\"purchase_units\":[{\"amount\":{\"currency_code\":\"USD\",\"value\":\"100.00\"}}]}";
 //        HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-        HttpEntity<String> entity = new HttpEntity<String>(body, headers);
+        HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
         ResponseEntity<Object> response = restTemplate.exchange(
                 BASE + "/v2/checkout/orders",
