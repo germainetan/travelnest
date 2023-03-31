@@ -99,8 +99,38 @@ public class BookingConfig {
                         "confirmed"
                 );
 
+                Booking B009 = new Booking(
+                        9,
+                        2,
+                        24,
+                        9,
+                        LocalDateTime.parse("2022-08-08 18:00:00", formatter),
+                        LocalDateTime.parse("2022-08-12 12:00:00", formatter),
+                        "confirmed"
+                );
+
+                Booking B010 = new Booking(
+                        2,
+                        7,
+                        19,
+                        10,
+                        LocalDateTime.parse("2023-05-11 12:00:00", formatter),
+                        LocalDateTime.parse("2023-05-18 09:00:00", formatter),
+                        "pending"
+                );
+
+                Booking B011 = new Booking(
+                        7,
+                        9,
+                        20,
+                        11,
+                        LocalDateTime.parse("2022-05-02 12:00:00", formatter),
+                        LocalDateTime.parse("2022-05-09 21:00:00", formatter),
+                        "pending"
+                );
+
                 bookingRepository.saveAll(
-                        List.of(B001, B002, B003, B004, B005, B006, B007, B008)
+                        List.of(B001, B002, B003, B004, B005, B006, B007, B008, B009, B010, B011)
                 );
             };
         };

@@ -52,10 +52,11 @@ def processFilterProperty(book_filter):
         
     country = book_filter["country"]
     guests = book_filter["guests"]
+    price = book_filter["price"]
     start_datetime = book_filter["start_datetime"]
 
     # defining the paramters for the microservices
-    prop_param = f"/search?country={country}&guests={guests}"
+    prop_param = f"/search?country={country}&guests={guests}&price={price}"
     book_param = f"/search?start_datetime={start_datetime}"
 
     # invoke property microservice
