@@ -34,7 +34,7 @@ public class PropertyService {
 
     // get propert(ies) by country & guests
 
-    public List<Property> find_property_by_country_and_guests(String country, Integer guests){
-        return propertyRepository.find_property_by_country_and_guests(country, guests);
+    public List<Property> find_property_by_country_and_guests(String country, Integer guests, Integer price){
+        return propertyRepository.find_property_by_country_and_guests(country, guests, price);
     }
 }

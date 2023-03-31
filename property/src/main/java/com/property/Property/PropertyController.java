@@ -31,7 +31,8 @@ public class PropertyController {
     // get propert(ies) by country & guests
     @GetMapping("/search")
     public List<Property> find_property_by_country_and_guests(@RequestParam String country,
-                                                              @RequestParam Integer guests){
-        return propertyService.find_property_by_country_and_guests(country, guests);
+                                                              @RequestParam Integer guests,
+                                                              @RequestParam Integer price){
+        return propertyService.find_property_by_country_and_guests(country, guests, price);
     }
 }

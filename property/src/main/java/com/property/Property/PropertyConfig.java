@@ -16,7 +16,7 @@ public class PropertyConfig {
 
                 Property P001 = new Property(
                         "Turtle Bay HuaHin eco luxeTurt Villa in Lotus Bay",
-                        "5",
+                        5,
                         "Thailand",
                         "Hua Hin District",
                         12.4544743,
@@ -32,7 +32,7 @@ public class PropertyConfig {
 
                 Property P002 = new Property(
                         "Hideout Horizon - Eco Bamboo Home",
-                        "2",
+                        2,
                         "Indonesia",
                         "Bali",
                         -8.450139321,
@@ -48,7 +48,7 @@ public class PropertyConfig {
 
                 Property P003 = new Property(
                         "Gawthorne's Hut",
-                        "5",
+                        5,
                         "Australia",
                         "Buckaroo",
                         -32.5785253,
@@ -64,7 +64,7 @@ public class PropertyConfig {
 
                 Property P004 = new Property(
                         "Converted Bus near Universiti Malaya",
-                        "8",
+                        8,
                         "Malaysia",
                         "Kuala Lumpur",
                         3.120821289,
@@ -80,7 +80,7 @@ public class PropertyConfig {
 
                 Property P005 = new Property(
                         "Le Manoir des Bougainvilliers",
-                        "1",
+                        1,
                         "Philippines",
                         "Puerto Galera",
                         13.49228771,
@@ -96,7 +96,7 @@ public class PropertyConfig {
 
                 Property P006 = new Property(
                         "Villa The Cloud",
-                        "3",
+                        3,
                         "Indonesia",
                         "Bali",
                         -8.563399175,
@@ -112,7 +112,7 @@ public class PropertyConfig {
 
                 Property P007 = new Property(
                         "Kellogg House",
-                        "4",
+                        4,
                         "United States",
                         "California",
                         34.12100674,
@@ -128,7 +128,7 @@ public class PropertyConfig {
 
                 Property P008 = new Property(
                         "Amsterdam The Crane by YAYS",
-                        "6",
+                        6,
                         "Netherlands",
                         "Amsterdam",
                         52.37754698,
@@ -144,7 +144,7 @@ public class PropertyConfig {
 
                 Property P009 = new Property(
                         "Heavot Caves Resort",
-                        "9",
+                        9,
                         "India",
                         "Himachal Pradesh",
                         31.16097481,
@@ -160,7 +160,7 @@ public class PropertyConfig {
 
                 Property P0010 = new Property(
                         "Buff and Fellow",
-                        "7",
+                        7,
                         "South Africa",
                         "George",
                         -34.01944485,
@@ -176,7 +176,7 @@ public class PropertyConfig {
 
                 Property P0011 = new Property(
                         "The Boot - Bed and Breakfast",
-                        "4",
+                        4,
                         "New Zealand",
                         "Nelson",
                         -41.1956774,
@@ -192,7 +192,7 @@ public class PropertyConfig {
 
                 Property P0012 = new Property(
                         "Nacpan Beach Glamping",
-                        "2",
+                        2,
                         "Philippines",
                         "Palawan",
                         11.3129685,
@@ -208,7 +208,7 @@ public class PropertyConfig {
 
                 Property P0013 = new Property(
                         "Leafy Greens Chiangmai",
-                        "6",
+                        6,
                         "Thailand",
                         "Chiang Mai",
                         18.8352768,
@@ -224,7 +224,7 @@ public class PropertyConfig {
 
                 Property P0014 = new Property(
                         "My Castle Khaokho",
-                        "5",
+                        5,
                         "Thailand",
                         "Khao Kho",
                         16.6837212,
@@ -240,7 +240,7 @@ public class PropertyConfig {
 
                 Property P0015 = new Property(
                         "The Roundhouses",
-                        "1",
+                        1,
                         "Australia",
                         "Tasmania",
                         -43.1392427,
@@ -256,7 +256,7 @@ public class PropertyConfig {
 
                 Property P0016 = new Property(
                         "Le Mica - Chalets Micro-Element",
-                        "6",
+                        6,
                         "Canada",
                         "Québec",
                         46.9777781,
@@ -272,7 +272,7 @@ public class PropertyConfig {
 
                 Property P0017 = new Property(
                         "The Invisible House",
-                        "3",
+                        3,
                         "United States",
                         "California",
                         34.1049231,
@@ -288,7 +288,7 @@ public class PropertyConfig {
 
                 Property P0018 = new Property(
                         "Alianz Loft",
-                        "8",
+                        8,
                         "Costa Rica",
                         "Heredia Province",
                         10.0126391,
@@ -304,7 +304,7 @@ public class PropertyConfig {
 
                 Property P0019 = new Property(
                         "BedrocK Homestead",
-                        "7",
+                        7,
                         "United States",
                         "Utah",
                         37.8663612,
@@ -320,7 +320,7 @@ public class PropertyConfig {
 
                 Property P0020 = new Property(
                         "Casa Acantilado",
-                        "9",
+                        9,
                         "Spain",
                         "Granada",
                         36.7441885,
@@ -336,7 +336,7 @@ public class PropertyConfig {
 
                 Property P0021 = new Property(
                         "Casa Xochitl",
-                        "4",
+                        4,
                         "Mexico",
                         "El Centenario",
                         24.0947319,
@@ -352,7 +352,7 @@ public class PropertyConfig {
 
                 Property P0022 = new Property(
                         "Villa Imah Caang",
-                        "8",
+                        8,
                         "Indonesia",
                         "West Java",
                         -6.8177716,
@@ -368,7 +368,7 @@ public class PropertyConfig {
 
                 Property P0023 = new Property(
                         "BeeHive Homes of Spring",
-                        "6",
+                        6,
                         "United States",
                         "Texas",
                         30.0409635,
@@ -384,7 +384,7 @@ public class PropertyConfig {
 
                 Property P0024 = new Property(
                         "Birdbox Langeland",
-                        "2",
+                        2,
                         "Norway",
                         "Skilbrei",
                         61.4031832,
@@ -400,7 +400,7 @@ public class PropertyConfig {
 
                 Property P0025 = new Property(
                         "輪の家 Ring House",
-                        "3",
+                        3,
                         "Japan",
                         "Nagano",
                         36.3039615,
@@ -416,7 +416,7 @@ public class PropertyConfig {
 
                 Property P0026 = new Property(
                         "Marina Bay Sands Hotel Deluxe/Premier Room",
-                        "9",
+                        9,
                         "Singapore",
                         "Singapore",
                         1.2838755,
@@ -432,7 +432,7 @@ public class PropertyConfig {
 
                 Property P0027 = new Property(
                         "StarsBOX",
-                        "6",
+                        6,
                         "Italy",
                         "Garessio",
                         44.2042665,
@@ -448,7 +448,7 @@ public class PropertyConfig {
 
                 Property P0028 = new Property(
                         "Euphoria Art Land",
-                        "5",
+                        5,
                         "Cyprus",
                         "Kato Pyrgos",
                         34.7252865,
@@ -464,7 +464,7 @@ public class PropertyConfig {
 
                 Property P0029 = new Property(
                         "Captain's Rooms",
-                        "1",
+                        1,
                         "Greece",
                         "Aegina",
                         37.7439287,
@@ -480,7 +480,7 @@ public class PropertyConfig {
 
                 Property P0030 = new Property(
                         "Tree House Munnar",
-                        "7",
+                        7,
                         "India",
                         "Kerala",
                         10.010307,
