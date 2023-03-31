@@ -19,7 +19,7 @@ def callback(channel, method, properties, body):
 # Microservices: Place Booking, Process Booking
 def sendWhatsapp(data):
     sid = 'AC0db8e941786b67830951b69976e1264e'
-    authToken = '9caa9f89094c3a08755321b82d061de3'
+    authToken = 'f80d1b2f73928c0d7154f22829b13436'
     client = Client(sid, authToken)
 
     ownerPhone = 'whatsapp:+65' + str(data['ownerPhone'])
@@ -38,7 +38,7 @@ def sendWhatsapp(data):
         client.messages.create(to=renterPhone, from_='whatsapp:+14155238886', body=renterMsg) 
     
     elif data['bookingStatus'] == 'rejected':
-        renterMsg = f"[no reply] From Travelnest: Hi {data['renterFullname']}, sorry to inform you that your booking BookingID: {data['bookingid']} is not successful and the payment has been refunded."
+        renterMsg = f"[no reply] From Travelnest: Hi {data['renterFullname']}, We are sorry to inform you that your booking BookingID: {data['bookingid']} is not successful and the payment has been refunded."
         client.messages.create(to=renterPhone, from_='whatsapp:+14155238886', body=renterMsg) 
 
     else:
