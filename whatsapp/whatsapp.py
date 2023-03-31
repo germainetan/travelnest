@@ -2,6 +2,7 @@ import json
 import os
 import amqp_setup
 from twilio.rest import Client
+from os import environ
 
 monitorBindingKey='whatsapp-num'
 
@@ -18,8 +19,8 @@ def callback(channel, method, properties, body):
 
 # Microservices: Place Booking, Process Booking
 def sendWhatsapp(data):
-    sid = 'AC0db8e941786b67830951b69976e1264e'
-    authToken = 'f80d1b2f73928c0d7154f22829b13436'
+    sid = environ.get('SID')
+    authToken = environ.get('AUTHTOKEN')
     client = Client(sid, authToken)
 
     ownerPhone = 'whatsapp:+65' + str(data['ownerPhone'])
