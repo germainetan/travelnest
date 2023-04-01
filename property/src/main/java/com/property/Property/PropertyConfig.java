@@ -24,7 +24,7 @@ public class PropertyConfig {
                         "77, หมู่บ้าน, 3 Hua-Hin 101, Nong Kae, Hua Hin District, Prachuap Khiri Khan 77110, Thailand",
                         "2 double beds",
                         147,
-                        1,
+                        2,
                         "The staff was so attentive and helpful, such a cultivated experience. Very peaceful environment, attention to detail was exquisite.",
                         4.97
                 );
@@ -99,7 +99,7 @@ public class PropertyConfig {
                         "Tibubiu, Kerambitan, Tabanan Regency, Bali, Indonesia",
                         "3 king beds, 1 sofa, 1 cot",
                         4067,
-                        7,
+                        8,
                         "Very relaxing. The swimming pool is awesome and all the facilities are great. Private and spacious futuristic villa with fantastic swimming pool, and lovely out door area. Wonderful location. Everything was perfect - location, service, vibe, etc. Fabulous pool and veeery beautiful design. It was peaceful and we relaxed easily.",
                         5
                 );
@@ -120,18 +120,18 @@ public class PropertyConfig {
                 );
 
                 Property P008 = new Property(
-                        "Amsterdam The Crane by YAYS",
+                        "Infinity Pool Villa",
                         6,
-                        "Netherlands",
-                        "Amsterdam",
-                        52.37754698,
-                        4.939462182,
-                        "Surinamekade 34, 1019 BH Amsterdam, Netherlands",
-                        "1 double bed",
-                        688,
-                        2,
-                        "Totally novel and with the most amazing views. Info on the history of the crane was excellent. Creaks, clangs, bangs etc. bring ear plugs. Truly unique and unforgettable. It's a very special place, well situated and the place is convenient.",
-                        4.58
+                        "Italy",
+                        "Province of Lecce",
+                        39.8022342,
+                        18.3381507,
+                        "73040 Castrignano del capo Province of Lecce, Italy",
+                        "6 bedrooms, 6 beds, 7.5 bathrooms",
+                        1374,
+                        13,
+                        "This place is AMAZING. For those who like short sweet reviews, here it is. The location is beautiful, not far from many cute towns, but tucked up and away in the hills for rest and seclusion. The pool, gardens and grounds are out of a fairy book, the house is charming, well cared for, clean, with attention to detail. There is a bathroom for every bedroom, a fully equipped kitchen and plenty of nice linens-including larger towels for around the pool. The pool is gorgeous, it is an infinity pool overlooking the Tuscan hills, with plenty of lounge chairs, and a shaded area under plant vines to escape from the sun if needed. It has its own pool house with work out room, full bathroom and out door kitchen(large table to eat at as well).",
+                        4.77
                 );
 
                 Property P009 = new Property(
@@ -150,33 +150,33 @@ public class PropertyConfig {
                 );
 
                 Property P0010 = new Property(
-                        "Buff and Fellow",
+                        "Smell Rose Beach Garden",
                         7,
-                        "South Africa",
-                        "George",
-                        -34.01944485,
-                        22.29782688,
-                        "226 Diepekloof, Ultreya Farm Grootbrak, George, 6535, South Africa",
-                        "2 king beds, 1 sofa bed",
-                        220,
-                        6,
-                        "Beautiful farm, Super cool concept, amazing to see the wildlife. This place was so unique and beautiful, we all loved the experience and beautiful design of our Eco cocoon we stayed at. Very unique and peaceful place. The animals were a beautiful site. Nice setup with well designed cabins and awesome animals around (even rhinos!). Awesome,unique stay. Time to relax in your own Hey Day setting. This is a great experience for overseas travellers, as you get to see some wild life. Loved our stay entirely. We liked the view on animals. We saw buffaloes, rhinoceros, antelopes. The style of the house is nice and there is a really big hot tube. I spent my birthday here and what can I say, “Magical” doesn’t do enough justice. Fantastic in every way. Will be tough to get a booking in future because I'm pretty sure a gem like this will be wildly popular. We will definitely return.",
-                        4.83
+                        "Malaysia",
+                        "Tanjung Bungah",
+                        5.4674033,
+                        100.2875101,
+                        "32, Medan Tanjong Bungah, 11200 Tanjung Bungah, Pulau Pinang, Malaysia",
+                        "1 bedroom, 2 beds, 1.5 bathrooms",
+                        107,
+                        3,
+                        "Great place. Sea view was breathtaking directly from bedroom. The house/room was nicely decorated. I would definitely recommend this place to anyone that's looking for a staycation, getaway, vacation. Ambience of the house was great. The room was perfect for our beach staycation and looks exactly like the photos. All the facilities in the house was helpful. The price was a bit pricey but it’s worth the stay. The house is beautiful, the room is excellent. The neighborhood was peaceful. Once open the backdoor/ window can hear the ocean waves sea waves stunning Sound. For sure will book again. Great place with a nice view.",
+                        4.98
                 );
 
                 Property P0011 = new Property(
-                        "The Boot - Bed and Breakfast",
+                        "Las Catalinas",
                         4,
-                        "New Zealand",
-                        "Nelson",
-                        -41.1956774,
-                        173.0573912,
-                        "320 Aporo Road, Tasman, Nelson 7152, New Zealand",
-                        "1 bedroom, 1 bed",
-                        240,
-                        2,
-                        "Great and peaceful place, Great surroundings for a very special occasion. We felt like in a fairytale in a wonderful, magnificent garden. Most charming place I’ve ever stayed. Ready to move in as soon as the fairy council approves my application. Nice theme and location. Had a great stay.",
-                        4.93
+                        "Costa Rica",
+                        "Guanacaste Province",
+                        10.4824097,
+                        -85.785928,
+                        "Las Catalinas, Guanacaste Province, Costa Rica",
+                        "5 bedrooms, 7 beds, 5.5 bathrooms",
+                        3589,
+                        13,
+                        "An unforgettable location for a wonderful long weekend getaway. Nice place to stay.",
+                        4.66
                 );
 
                 Property P0012 = new Property(
@@ -234,24 +234,24 @@ public class PropertyConfig {
                         "215 Sandhill Rd, Cygnet TAS 7112, Australia",
                         "2 bedrooms, 4 beds, 1 bathroom",
                         195,
-                        5,
+                        6,
                         "It was so peaceful looking out at the windy hills, and he lit the fire for us which was so lovely. Little bit of magic . The Round House is all the photos show. Amazing location and space. Very peaceful and so much wildlife in the surrounding area. We had a wonderful stay here. The accommodation was incredible with local wildlife right at our doorstep. The location is off grid, peaceful and quiet. Highly recommend. The views are amazing and even better at sunset looking over the mountains. Would stay here again. Absolutely gorgeous space with unique and creative details. It was such a treat to stay in this beautiful serene space. Will definitely come visit this beautiful private retreat again.",
                         4.89
                 );
 
                 Property P0016 = new Property(
-                        "Le Mica - Chalets Micro-Element",
+                        "Alpine Falls Ranch",
                         6,
-                        "Canada",
-                        "Québec",
-                        46.9777781,
-                        -71.2514224,
-                        "44 Chemin du Chevreuil, Lac-Beauport, Quebec G3B 0E1, Canada",
-                        "2 bedrooms, 4 beds, 1 bathroom",
-                        401,
-                        4,
-                        "Words and pictures cannot describe the beauty and serenity of Le MICA. Perched just below the summit of Mont Tourbillon, the views are breathtaking. The chalet itself is very comfortable and exceptionally clean. Although we felt as though we were miles away from civilization, the chalet is situated amongst biking and snowshoeing/hiking trails, and is a quick drive to Lac Beauport which has an excellent IGA, patisseries, and other conveniences. Quebec City is also very close. Breathtaking vistas and perfectly framed by the open design. The interior spaces provide a 360 viewing experience at all times. Perfectly integrated in the walking and biking trials of Maelstrom peak. It’s a top shelf experience. Incredible stay. Breathtaking views, even better than expected. Enjoyed the proximity to town and the city, but the place itself was the perfect quiet getaway.",
-                        4.98
+                        "United States",
+                        "Montana",
+                        47.2201635,
+                        -114.993263,
+                        "625 Longhorn Ln, Superior, MT 59872, United States",
+                        "5 bedrooms, 11 beds, 6 bathrooms",
+                        5164,
+                        13,
+                        "You’ll never regret an escape here. It’s so beautiful and the best get away ever. Everything you need and more make for an unforgettable stay. This place is magical. It is a haven that we were so impressed with. We were here for Christmas and we couldn’t have asked for a better location. Dream dream and dream some more. Endless room, endless activities, hot tub, theater room with sparkly nighttime sky, saloon experience, trap and skeet, ATV riding, sauna, TWO dishwashers, wood fire oven to cook your own pizza, and more.",
+                        5
                 );
 
                 Property P0017 = new Property(
@@ -315,18 +315,18 @@ public class PropertyConfig {
                 );
 
                 Property P0021 = new Property(
-                        "Casa Xochitl",
+                        "Wine Dark Sea Villas - Kastello Kalliste",
                         4,
-                        "Mexico",
-                        "El Centenario",
-                        24.0947319,
-                        -110.409403,
-                        "C. Miguel Aleman 78, El Centenario, 23205 El Centenario, B.C.S., Mexico",
-                        "3 bedrooms, 6 beds, 4.5 bathrooms",
-                        549,
-                        12,
-                        "Beautiful quiet property. Perfect for a weekend getaway. Very nice house on a golf club. The best part of the house is the downstairs outside part with a large green area, pool, huge table, and lounge area. Beautiful house located on the golf course, with an incredible view. The house is very nice. Excellent service. The house is wonderful. Beautiful house and property. Absolutely nothing is needed, it's a wonder of place. Highly recommended. The house exceeded our expectations. We have stayed several times and all have been a pleasure. The space tends to be very hot (nothing that can't be tolerable with the air conditioning), just take that into account. It's paradise in Morelos. The service is incredible, the place is super clean and with very comfortable facilities. The house is a beauty and an architectural jewel. Super service. Excellent host and excellent house. 100% recommended.",
-                        4.84
+                        "Greece",
+                        "Ioannina",
+                        35.0189758,
+                        25.857845,
+                        "Φέρμα, Ag. Ioannis 722 00, Greece",
+                        "8 bedrooms, 8 beds, 8 bathrooms",
+                        2314,
+                        16,
+                        "Will definitely stay again. It was the most satisfying stay of all the trips. Our overall stay was great.",
+                        4.67
                 );
 
                 Property P0022 = new Property(
@@ -375,33 +375,33 @@ public class PropertyConfig {
                 );
 
                 Property P0025 = new Property(
-                        "輪の家 Ring House",
+                        "Tunturikelo",
                         3,
-                        "Japan",
-                        "Nagano",
-                        36.3039615,
-                        138.5560371,
-                        "Mozawa, Karuizawa, Kitasaku District, Nagano 389-0114, Japan",
-                        "2 bedrooms, 3 beds, 1 bathroom",
-                        914,
-                        6,
-                        "This is a great experience to experience a contemporary Japanese House. We loved the architecture and in November it is a perfect observation point for the Karuizawa autumn foliage. Nice place to stay. Not great at blocking light. It was a beautiful location and a great time. An unforgettable location for a wonderful long weekend getaway. The best was that we could bring our dog.",
-                        4.66
+                        "Finland",
+                        "Nuorgam",
+                        70.0297188,
+                        27.9151687,
+                        "Pulmankijärventie 664, 99990 Nuorgam, Finland",
+                        "1 bedroom, 3 beds, toilet with sink",
+                        233,
+                        4,
+                        "The decor is great and it makes you feel like you’re embracing the wilderness with all the creature comforts you could want. We loved staying in this cosy wood lodge. We were lucky enough to see the northern lights from right outside on my birthday. Everything about our stay was absolutely fantastic. An isolated accommodation, quiet, in the middle of nature. Nothing like that to be disconnected. An absolutely charming place to stay by two exceptionally lovely landlords. To relax and enjoy nature, but also as an ideal starting point for outdoor activities in the Arctic Tundra. All around perfect.",
+                        5
                 );
 
                 Property P0026 = new Property(
-                        "Marina Bay Sands Hotel Deluxe/Premier Room",
+                        "Masseria Quadrelli",
                         9,
-                        "Singapore",
-                        "Singapore",
-                        1.2838755,
-                        103.8591172,
-                        "10 Bayfront Ave, Singapore 018956",
-                        "Studio, 1 bed, 1 shared bathroom",
-                        644,
-                        4,
-                        "We had booked and paid premium rates for a high floor room overlooking the city and water. It was a fabulous room, but after 2 nights we were told that we had to change room to a much lower room, although recently upgraded. I will book ít again soon or later. Excellent customer service with great support. Wonderful hotel. Had such a great time at MBS. Check-in was easy and smooth. Will definitely stay again. It was the most satisfying stay of all the trips. Our overall stay was great. We had such a great view of the gardens from our room. Nice and easy stay. Communication could be faster.",
-                        4.67
+                        "Italy",
+                        "Sanarica",
+                        40.0760022,
+                        18.3584725,
+                        "Strada Comunale Sanarica Poggiardo, 73030 Sanarica LE, Italy",
+                        "11 bedrooms, 18 beds, 12 bathrooms",
+                        1374,
+                        16,
+                        "We found Masseria Quadrelli when we started planning our wedding in Puglia and initially thought we could rent the Masseria as accommodation for our families and hold the wedding at a different venue but after seeing it in person for the first time, we fell in love with the villa and it’s atmosphere and when we found out that they do weddings, it was an easy decision. Beautiful property highly recommended. Amazing house, just perfect.",
+                        4.8
                 );
 
                 Property P0027 = new Property(
@@ -420,18 +420,18 @@ public class PropertyConfig {
                 );
 
                 Property P0028 = new Property(
-                        "Euphoria Art Land",
+                        "Hillagammi",
                         5,
-                        "Cyprus",
-                        "Kato Pyrgos",
-                        34.7252865,
-                        33.1900433,
-                        "Vasilikon 76, Pyrgos 4529, Cyprus",
-                        "1 bedroom, 1 bed, 1 bathroom",
-                        199,
-                        2,
-                        "An unforgettable stay in an amazingly unique and beautiful place, highly recommend. Great and super unusual place to stay.  It’s more expensive than the average accomodation in Cyprus but I thought it was well worth it. It’s so unique that you can’t miss it.",
-                        4.77
+                        "Finland",
+                        "Nuorgam",
+                        70.0011667,
+                        27.8571331,
+                        "Kaldoaivin erämaa-alue, 99990 Nuorgam, Finland",
+                        "2 bedrooms, 3 beds, 0 bathrooms",
+                        312,
+                        6,
+                        "The surrounding winter landscapes are beautiful and calm. We had all kinds of weather, but always good enough to go for a bit to collect water in the water hole or go on a ski trip. We loved to end the day with the Sauna. Would come back any time again if we crave a little outdoor adventure. Wonderful cottage, breathtaking nature and loving host. A visit is more than worth it. Glorious few days in a little bit of paradise. The cottage is beautiful, with a great open view onto the surrounding wilderness and the nearby mountaintop. Of course a cabin this remote does not have plumbing, but the outhouse and sauna/washhouse we're both better and more comfortable than expected. The cabin has solar panels and a battery to provide some creature comforts plus the fireplace and insulation make it cozy even at -30° outside temperature.",
+                        5
                 );
 
                 Property P0029 = new Property(
