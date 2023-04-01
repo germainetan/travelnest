@@ -16,7 +16,7 @@ CORS(app)
 property_URL = environ.get("property_URL") or "http://localhost:8083/property"
 booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
 
-@app.route("/filter_property", methods=['GET'])
+@app.route("/filter_property", methods=['POST'])
 
 def filter_property():
 
@@ -53,8 +53,8 @@ def processFilterProperty(book_filter):
     country = book_filter["country"]
     guests = book_filter["guests"]
     price = book_filter["price"]
-    start_datetime = book_filter["start_datetime"]
-    end_datetime = book_filter["end_datetime"]
+    start_datetime = "T".join(book_filter["start_datetime"].split(" "))
+    end_datetime = "T".join(book_filter["end_datetime"].split(" "))
 
     # defining the paramters for the microservices
     prop_param = f"/search?country={country}&guests={guests}&price={price}"
@@ -67,6 +67,8 @@ def processFilterProperty(book_filter):
     property_result = invoke_http(property_URL + prop_param , method='GET')
     print('property_result:', property_result)
 
+    property_result = property_result["data"]
+
     
     # invoke booking microservice
     print('\n-----Invoking booking microservice-----')
@@ -75,17 +77,20 @@ def processFilterProperty(book_filter):
     booking_result = invoke_http(booking_URL + book_param , method='GET')
     print('booking_result:', booking_result)
 
-    prop_list = []
+    if booking_result["code"] in range(200,300):
 
-    for prop in property_result:
-        prop_list.append(prop["propertyID"])
+        prop_list = []
 
-    print(prop_list)
+        for prop in property_result:
+            prop_list.append(prop["propertyID"])
 
-    for i in range(len(prop_list)):
-        
-        if str(prop_list[i]) in booking_result:
-            property_result.pop(i) 
+        print(prop_list)
+
+        for i in range(len(prop_list)):
+            
+            if str(prop_list[i]) in booking_result["data"]:
+                property_result.pop(i) 
+
 
     if len(property_result):
         return {
@@ -100,6 +105,7 @@ def processFilterProperty(book_filter):
             "code": 404,
             "message": "There are no available properties that match your requirements. Please reselect your filters"
         }
+    
 
 
 # Execute this program if it is run as a main script (not by 'import')

@@ -1,9 +1,7 @@
 package com.booking.Booking;
 
 import jakarta.transaction.Transactional;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,14 +18,6 @@ public class BookingService {
 
     // create a booking record
     public Booking add_booking(Booking booking) {
-
-        Integer bookingID = booking.getBookingID();
-
-        if (bookingID != null) {
-
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Please check if you had accidentally parsed in bookingID in your request body. If yes, please remove it.");
-        }
-
         return bookingRepository.save(booking);
     }
 
@@ -38,13 +28,6 @@ public class BookingService {
 
     // get booking by bookingID
     public Optional get_booking_by_bookingID(Integer bookingID) {
-
-        boolean exits = bookingRepository.existsById(bookingID);
-
-        if (!exits) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking with bookingID " + bookingID + " does not exist");
-        }
-
         return bookingRepository.findById(bookingID);
     }
 
@@ -66,12 +49,6 @@ public class BookingService {
 
     @Transactional
     public Booking update_booking_status(Integer bookingID, String booking_status) {
-
-        boolean exits = bookingRepository.existsById(bookingID);
-
-        if (!exits) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking with bookingID " + bookingID + " does not exist");
-        }
 
         Booking booking = bookingRepository.getReferenceById(bookingID);
 

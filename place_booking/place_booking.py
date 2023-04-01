@@ -83,7 +83,7 @@ def processBooking(check_booking):
     # property_result = invoke_http(property_URL + propertyid, method='GET')
     property_result = invoke_http(property_URL + f"/{propertyid}", method='GET')
     print('property_result:', property_result)
-    ownerid = property_result["ownerID"]
+    ownerid = property_result["data"]["ownerID"]
 
     # Invoke the Owner microservice
     # Retrieve Owner's phone from OwnerID
@@ -119,12 +119,12 @@ def processBooking(check_booking):
     # Invoke the whatsapp microservice
 
     message = {
-        'bookingStatus': booking_result['booking_status'],
-        'bookingid': booking_result['bookingID'],
-        'renterFullname': renter_result["fullName"],
-        'renterPhone': renter_result["phone"],
-        'ownerPhone' : owner_result["phone"],
-        'ownerFullname' : owner_result["fullName"]
+        'bookingStatus': booking_result["data"]['booking_status'],
+        'bookingid': booking_result["data"]['bookingID'],
+        'renterFullname': renter_result["data"]["fullName"],
+        'renterPhone': renter_result["data"]["phone"],
+        'ownerPhone' : owner_result["data"]["phone"],
+        'ownerFullname' : owner_result["data"]["fullName"]
     }
 
     body = json.dumps(message).encode('utf-8')
@@ -137,10 +137,10 @@ def processBooking(check_booking):
     return {
         "code": 200,
         "data": {
-            "bookingID" : booking_result['bookingID'],
-            "propertyTitle" : property_result['title'],
-            "ownerEmail" : owner_result['email'],
-            "ownerPhone" : owner_result["phone"],
+            "bookingID" : booking_result["data"]['bookingID'],
+            "propertyTitle" : property_result["data"]['title'],
+            "ownerEmail" : owner_result["data"]['email'],
+            "ownerPhone" : owner_result["data"]["phone"],
             "start_datetime" : start_datetime,
             "end_datetime" : end_datetime,
             "booking_status" : "pending"

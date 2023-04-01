@@ -17,7 +17,7 @@ property_URL = environ.get("property_URL") or "http://localhost:8083/property"
 booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
 renter_URL = environ.get("renter_URL") or "http://localhost:8082/renter"
 
-@app.route("/check_booking", methods=['GET'])
+@app.route("/check_booking", methods=['POST'])
 
 def filter_property():
 
@@ -52,8 +52,8 @@ def filter_property():
 def processFilterProperty(check_booking): 
         
     personID = check_booking["personID"]
-    booking_status = check_booking["booking_status"]
-    status = check_booking["status"]
+    booking_status = check_booking["booking_status"].lower()
+    status = check_booking["status"].lower()
 
     if status == "owner":
         # defining the paramters for the microservices  
@@ -68,51 +68,60 @@ def processFilterProperty(check_booking):
     booking_result = invoke_http(booking_URL + book_param , method='GET')
     print('booking_result:', booking_result)
 
+    if booking_result["code"] in range(200, 300):
+
     # iterate thru list to invoke & get the variables
-    check_book = []
+        check_book = []
 
-    for booking in booking_result:
+        for booking in booking_result["data"]:
 
-        result = {}
+            result = {}
 
-        # get the required variables needed to invoke other ms AND store in result
-        bookingID = booking["bookingID"]
-        renterID = booking["renterID"]
-        propertyID = booking["propertyID"]
-        start_datetime = booking["start_datetime"]
-        end_datetime = booking["end_datetime"]
+            # get the required variables needed to invoke other ms AND store in result
+            result["bookingID"] = booking["bookingID"]
+            result["start_datetime"] = booking["start_datetime"]
+            result["end_datetime"] = booking["end_datetime"]
 
-        # invoke property microservice
-        print('\n-----Invoking property microservice-----')
+            renterID = booking["renterID"]
+            propertyID = booking["propertyID"]
 
-        # returns a list of dictionary
-        property_result = invoke_http(property_URL + f"/{propertyID}" , method='GET')
-        print('property_result:', property_result)
-
-        if status == "owner":
-            # invoke renter microservice
+            # invoke property microservice
             print('\n-----Invoking property microservice-----')
 
             # returns a list of dictionary
-            renter_result = invoke_http(renter_URL + f"/{renterID}" , method='GET')
-            print('renter_result:', renter_result)
+            property_result = invoke_http(property_URL + f"/{propertyID}" , method='GET')
+            print('property_result:', property_result)
 
-            result["renter"] = renter_result
+            if status == "owner":
+                # invoke renter microservice
+                print('\n-----Invoking property microservice-----')
 
-        result["bookingID"] = bookingID
-        result["property"] = property_result
-        result["start_datetime"] = start_datetime
-        result["end_datetime"] = end_datetime
+                # returns a list of dictionary
+                renter_result = invoke_http(renter_URL + f"/{renterID}" , method='GET')
+                print('renter_result:', renter_result)
 
-        check_book.append(result)
+                result["renter"] = renter_result["data"]
 
-    if len(check_book):
+            property_result = property_result["data"]
+
+            property_response = {
+                "title" : property_result["title"],
+                "propertyID" : property_result["propertyID"],
+                "country" : property_result["country"],
+                "city" : property_result["city"],
+                "address" : property_result["address"],
+            }
+
+            result["property"] = property_response
+
+            check_book.append(result)
+
         return {
                 "code": 200,
                 "data" : {
                     "check_book_results" : check_book
                 },
-                "message" : "booking_result Success"
+                "message" : "Check booking_result Success"
             }
 
     return {

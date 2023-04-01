@@ -53,7 +53,7 @@ def process_booking():
 def processBooking(check_booking):
 
     bookingid = check_booking["bookingid"]
-    booking_status = check_booking["booking_status"]
+    booking_status = check_booking["booking_status"].lower()
     amqp_setup.check_setup()
 
     # Invoke the Booking microservice
@@ -62,9 +62,9 @@ def processBooking(check_booking):
     
     booking_result = invoke_http(booking_URL + f"/{bookingid}" , method='GET')
 
-    renterid = booking_result["renterID"]
-    paymentid = booking_result["paymentID"]
-    ownerid = booking_result["ownerID"]
+    renterid = booking_result["data"]["renterID"]
+    paymentid = booking_result["data"]["paymentID"]
+    ownerid = booking_result["data"]["ownerID"]
     print('Renterid:', renterid)
     print('Paymentid:', paymentid)
     print('Booking_result:', booking_result)
@@ -115,7 +115,7 @@ def processBooking(check_booking):
     # Retrieve Renter's phone from RenterID
     print('\n\n-----Invoking Renter microservice-----')
     renter_result = invoke_http(renter_URL + f"/{renterid}", method='GET')
-    print('renter_phone:', renter_result["phone"])
+    print('renter_phone:', renter_result["data"]["phone"])
 
     # Send to AMQP
     # message = {'bookingStatus':'pending', 'bookingid': '1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'98242683'}
@@ -123,8 +123,8 @@ def processBooking(check_booking):
     message = {
         'bookingStatus': booking_status,
         'bookingid': bookingid,
-        'renterFullname': renter_result["fullName"],
-        'renterPhone': renter_result["phone"],
+        'renterFullname': renter_result["data"]["fullName"],
+        'renterPhone': renter_result["data"]["phone"],
         'ownerPhone' : "",
         'ownerFullname' : ""
     }
@@ -135,8 +135,8 @@ def processBooking(check_booking):
         owner_result = invoke_http(owner_URL + f"/{ownerid}", method='GET')
         print('owner_result:', owner_result)
 
-        message["ownerFullname"] = owner_result["fullName"]
-        message["ownerPhone"] = owner_result["phone"]
+        message["ownerFullname"] = owner_result["data"]["fullName"]
+        message["ownerPhone"] = owner_result["data"]["phone"]
 
 
     body = json.dumps(message).encode('utf-8')
