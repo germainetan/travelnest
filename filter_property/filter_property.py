@@ -13,8 +13,8 @@ app = Flask(__name__)
 CORS(app)
 
 
-property_URL = environ.get("property_URL") or "http://localhost:8000/property"
-booking_URL = environ.get("booking_URL") or "http://localhost:8000/booking"
+property_URL = environ.get("property_URL") or "http://localhost:8083/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
 
 @app.route("/filter_property", methods=['POST'])
 

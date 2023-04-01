@@ -157,6 +157,50 @@ public class BookingController {
     }
 
 
+    // return all owner bookings
+    @GetMapping("/owner/{ownerID}")
+    public ResponseEntity<?> get_all_owner_bookings(@PathVariable Integer ownerID) {
+
+        List<Booking> booking = bookingService.get_all_owner_bookings(ownerID);
+
+        if (booking.isEmpty()) {
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("code", NOT_FOUND.value());
+            responseBody.put("data", "No booking records for ownerID " + ownerID);
+            return ResponseEntity.status(NOT_FOUND).body(responseBody);
+        }
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("code", OK.value());
+        responseBody.put("data", booking);
+
+        return ResponseEntity.ok(responseBody);
+
+    }
+
+
+    // return all renter bookings
+    @GetMapping("/renter/{renterID}")
+    public ResponseEntity<?> get_by_renter_and_booking_status (@PathVariable Integer renterID) {
+
+        List<Booking> booking = bookingService.get_all_renter_bookings(renterID);
+
+        if (booking.isEmpty()) {
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("code", NOT_FOUND.value());
+            responseBody.put("data", "No booking records for renterID " + renterID);
+            return ResponseEntity.status(NOT_FOUND).body(responseBody);
+        }
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("code", OK.value());
+        responseBody.put("data", booking);
+
+        return ResponseEntity.ok(responseBody);
+
+    }
+
+
     // update booking status
     @PutMapping("/{bookingID}")
     public ResponseEntity<?> update_booking_status(

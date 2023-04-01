@@ -94,7 +94,7 @@ def processFilterProperty(check_booking):
 
             if status == "owner":
                 # invoke renter microservice
-                print('\n-----Invoking property microservice-----')
+                print('\n-----Invoking renter microservice-----')
 
                 # returns a list of dictionary
                 renter_result = invoke_http(renter_URL + f"/{renterID}" , method='GET')

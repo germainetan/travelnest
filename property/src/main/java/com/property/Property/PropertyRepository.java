@@ -11,8 +11,9 @@ import java.util.List;
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 
     @Query("SELECT p FROM Property p WHERE p.country=:country AND p.guests=:guests AND p.price <= :price")
-    List<Property> find_property_by_country_and_guests(@Param("country") String country,
-                                                       @Param("guests") Integer guests,
-                                                       @Param("price") Integer price);
+    List<Property> find_property_by_country_and_guests(@Param("country") String country, @Param("guests") Integer guests, @Param("price") Integer price);
+
+    @Query("SELECT DISTINCT p.country FROM Property p")
+    List<String> find_unique_countries();
 
 }

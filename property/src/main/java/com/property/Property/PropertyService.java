@@ -20,15 +20,17 @@ public class PropertyService {
     }
 
     // get property by propertyID
-
     public Optional get_property_by_propertyID(Integer propertyID) {
         return propertyRepository.findById(propertyID);
     }
 
-
     // get property(ies) by country & guests
-
     public List<Property> find_property_by_country_and_guests(String country, Integer guests, Integer price){
         return propertyRepository.find_property_by_country_and_guests(country, guests, price);
+    }
+
+    // get all unique countries
+    public List<String> find_unique_countries(){
+        return propertyRepository.find_unique_countries();
     }
 }

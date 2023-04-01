@@ -23,7 +23,7 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    // get all owner
+    // get all property
     @GetMapping()
     public ResponseEntity<?> get_all_property() {
 
@@ -42,7 +42,7 @@ public class PropertyController {
         return ResponseEntity.ok(responseBody);
     }
 
-    // get owner by ownerID
+    // get property by propertyID
     @GetMapping("/{propertyID}")
     public ResponseEntity<Map<String, Object>> get_property_by_propertyID(@PathVariable("propertyID") Integer propertyID) {
 
@@ -60,7 +60,6 @@ public class PropertyController {
         responseBody.put("data", property.get());
         return ResponseEntity.ok(responseBody);
     }
-
 
 
     // get property(ies) by country & guests
@@ -84,6 +83,20 @@ public class PropertyController {
 
         return ResponseEntity.ok(responseBody);
 
+    }
+
+    @GetMapping("/get_unique_countries")
+    public ResponseEntity<?> find_unique_countries(){
+
+        List<String> unique_countries = propertyService.find_unique_countries();
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("code", OK.value());
+        responseBody.put("data", unique_countries);
+
+        return ResponseEntity.ok(responseBody);
 
     }
+
+
 }

@@ -47,6 +47,16 @@ public class BookingService {
         return bookingRepository.get_by_renter_and_booking_status(renterID, booking_status);
     }
 
+    // return all owner bookings
+    public List<Booking> get_all_owner_bookings(Integer ownerID){
+        return bookingRepository.get_all_owner_bookings(ownerID);
+    }
+
+    // return all renter bookings
+    public List<Booking> get_all_renter_bookings(Integer renterID){
+        return bookingRepository.get_all_renter_bookings(renterID);
+    }
+
     @Transactional
     public Booking update_booking_status(Integer bookingID, String booking_status) {
 
