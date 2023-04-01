@@ -3,6 +3,13 @@ version: '3.8'
 
 volumes:
   rabbitmq_data:
+  pgdata: 
+  kongadata:
+
+networks:
+  kong-net:
+    driver: bridge
+
 
 services:
 # simple microservices listening on ports: 8080 - 8084
@@ -18,8 +25,10 @@ services:
       context: ./booking
       dockerfile: booking.Dockerfile
     restart: always
-    ports:
-      - "8080:8080"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8080:8080"
     environment:
           - dbname=travelnest:travelnest@host.docker.internal
 
@@ -34,8 +43,10 @@ services:
       context: ./owner
       dockerfile: owner.Dockerfile
     restart: always
-    ports:
-      - "8081:8081"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8081:8081"
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
@@ -50,8 +61,10 @@ services:
       context: ./renter
       dockerfile: renter.Dockerfile
     restart: always
-    ports:
-      - "8082:8082"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8082:8082"
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
@@ -66,8 +79,10 @@ services:
       context: ./property
       dockerfile: property.Dockerfile
     restart: always
-    ports:
-      - "8083:8083"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8083:8083"
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
@@ -82,8 +97,10 @@ services:
       context: ./payment
       dockerfile: payment.Dockerfile
     restart: always
-    ports:
-      - "8084:8084"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8084:8084"
     environment:
       - dbname=travelnest:travelnest@host.docker.internal
 
@@ -92,8 +109,13 @@ services:
   ####################################
   rabbitmq:
     image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     hostname: esd-rabbit
     restart: always
+    networks:
+      - kong-net
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -111,6 +133,8 @@ services:
       context: ./whatsapp
       dockerfile: whatsapp.Dockerfile
     restart: always
+    networks:
+      - kong-net
     depends_on:
       - rabbitmq
     environment:
@@ -133,8 +157,10 @@ services:
       context: ./check_booking
       dockerfile: ./check_booking.Dockerfile
     restart: always
-    ports:
-      - "8085:8085"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8085:8085"
     depends_on:
       - property
       - booking
@@ -156,8 +182,10 @@ services:
       context: ./filter_property
       dockerfile: filter_property.Dockerfile
     restart: always
-    ports:
-      - "8086:8086"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8086:8086"
     depends_on:
       - property
       - booking
@@ -177,8 +205,10 @@ services:
       context: ./place_booking
       dockerfile: place_booking.Dockerfile
     restart: always
-    ports:
-      - "8087:8087"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8087:8087"
     depends_on:
       - payment
       - property
@@ -208,8 +238,10 @@ services:
       context: ./process_booking
       dockerfile: process_booking.Dockerfile
     restart: always
-    ports:
-      - "8088:8088"
+    networks:
+      - kong-net
+    # ports:
+    #   - "8088:8088"
     depends_on:
       - payment
       - property
@@ -228,3 +260,84 @@ services:
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
+  #######################################
+  # Postgres: The database used by Kong
+  #######################################
+  kong-database:
+    image: postgres:9.6
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  #######################################
+  # Kong database migration
+  #######################################
+  kong-migration:
+    image: kong:2.0.4
+    command: "kong migrations bootstrap"
+    restart: on-failure
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+    depends_on:
+      - kong-database
+
+  #######################################
+  # Kong: The API Gateway
+  #######################################
+  kong:
+    image: kong:2.0.4
+    links:
+      - rabbitmq
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    depends_on:
+      - kong-migration
+    ports:
+      - "8000:8000"
+  
+  #######################################
+  # Konga: Kong GUI
+  #######################################
+  konga:
+    image: pantsel/konga
+    restart: always
+    networks:
+        - kong-net
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: password
+      DB_DATABASE: konga_db
+    depends_on:
+      - kong
+    ports:
+      - "1337:1337"
+    volumes:
+      - kongadata:/app/kongadata

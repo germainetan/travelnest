@@ -13,9 +13,9 @@ app = Flask(__name__)
 CORS(app)
 
 
-property_URL = environ.get("property_URL") or "http://localhost:8083/property"
-booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
-renter_URL = environ.get("renter_URL") or "http://localhost:8082/renter"
+property_URL = environ.get("property_URL") or "http://localhost:8000/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8000/booking"
+renter_URL = environ.get("renter_URL") or "http://localhost:8000/renter"
 
 @app.route("/check_booking", methods=['GET'])
 
