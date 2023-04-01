@@ -7,7 +7,7 @@ port = environ.get('rabbit_port') or 5672
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(
         host=hostname, port=port,
-        heartbeat=3600, blocked_connection_timeout=3600, 
+        heartbeat=3600, blocked_connection_timeout=3600
 ))
    
 channel = connection.channel()

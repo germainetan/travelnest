@@ -13,11 +13,11 @@ import pika
 app = Flask(__name__)
 CORS(app)
 
-property_URL = environ.get("property_URL") or "http://localhost:8083/property"
-booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
-renter_URL = environ.get("renter_URL") or "http://localhost:8082/renter"
-payment_URL = environ.get("payment_URL") or "http://localhost:8084/payment"
-owner_URL = environ.get("owner_URL") or "http://localhost:8081/owner"
+property_URL = environ.get("property_URL") or "http://localhost:8000/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8000/booking"
+renter_URL = environ.get("renter_URL") or "http://localhost:8000/renter"
+payment_URL = environ.get("payment_URL") or "http://localhost:8000/payment"
+owner_URL = environ.get("owner_URL") or "http://localhost:8000/owner"
 
 
 @app.route("/process_booking", methods=['POST'])
@@ -75,6 +75,7 @@ def processBooking(check_booking):
     payment_result = invoke_http(payment_URL + f"/{paymentid}", method='GET')
 
     if booking_status == "confirmed":
+        print(payment_result)
         authorizationid = payment_result["authorizationID"]
         print('authorizationid:', authorizationid)
         payment_param = f"/api/orders/{authorizationid}/authorization/capture"
