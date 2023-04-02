@@ -33,11 +33,29 @@ public class Property {
     private String review;
     @Column
     private double rating;
+    @Column
+    private String placeID;
 
     public Property() {
     }
 
-    public Property(Integer propertyID, String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating) {
+    public Property(String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String placeID) {
+        this.title = title;
+        this.ownerID = ownerID;
+        this.country = country;
+        this.city = city;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.address = address;
+        this.beds = beds;
+        this.price = price;
+        this.guests = guests;
+        this.review = review;
+        this.rating = rating;
+        this.placeID = placeID;
+    }
+
+    public Property(Integer propertyID, String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating, String placeID) {
         this.propertyID = propertyID;
         this.title = title;
         this.ownerID = ownerID;
@@ -51,21 +69,7 @@ public class Property {
         this.guests = guests;
         this.review = review;
         this.rating = rating;
-    }
-
-    public Property(String title, Integer ownerID, String country, String city, double latitude, double longitude, String address, String beds, Integer price, Integer guests, String review, double rating) {
-        this.title = title;
-        this.ownerID = ownerID;
-        this.country = country;
-        this.city = city;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.address = address;
-        this.beds = beds;
-        this.price = price;
-        this.guests = guests;
-        this.review = review;
-        this.rating = rating;
+        this.placeID = placeID;
     }
 
     public Integer getPropertyID() {
@@ -172,6 +176,14 @@ public class Property {
         this.rating = rating;
     }
 
+    public String getPlaceID() {
+        return placeID;
+    }
+
+    public void setPlaceID(String placeID) {
+        this.placeID = placeID;
+    }
+
     @Override
     public String toString() {
         return "Property{" +
@@ -188,6 +200,7 @@ public class Property {
                 ", guests=" + guests +
                 ", review='" + review + '\'' +
                 ", rating=" + rating +
+                ", placeID='" + placeID + '\'' +
                 '}';
     }
 }
