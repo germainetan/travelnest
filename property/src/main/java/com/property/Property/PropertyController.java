@@ -64,11 +64,9 @@ public class PropertyController {
 
     // get property(ies) by country & guests
     @GetMapping("/search")
-    public ResponseEntity<?> find_property_by_country_and_guests(@RequestParam String country,
-                                                              @RequestParam Integer guests,
-                                                              @RequestParam Integer price){
+    public ResponseEntity<?> find_property_by_country_and_guests(@RequestParam String country, @RequestParam Integer guests){
 
-        List<Property> property = propertyService.find_property_by_country_and_guests(country, guests, price);
+        List<Property> property = propertyService.find_property_by_country_and_guests(country, guests);
 
         if (property.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();

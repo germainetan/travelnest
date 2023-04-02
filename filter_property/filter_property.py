@@ -52,12 +52,11 @@ def processFilterProperty(book_filter):
         
     country = book_filter["country"]
     guests = book_filter["guests"]
-    price = book_filter["price"]
     start_datetime = "T".join(book_filter["start_datetime"].split(" "))
     end_datetime = "T".join(book_filter["end_datetime"].split(" "))
 
     # defining the paramters for the microservices
-    prop_param = f"/search?country={country}&guests={guests}&price={price}"
+    prop_param = f"/search?country={country}&guests={guests}"
     book_param = f"/search?start_datetime={start_datetime}&end_datetime={end_datetime}"
 
     # invoke property microservice
@@ -67,29 +66,31 @@ def processFilterProperty(book_filter):
     property_result = invoke_http(property_URL + prop_param , method='GET')
     print('property_result:', property_result)
 
-    property_result = property_result["data"]
-
     
     # invoke booking microservice
     print('\n-----Invoking booking microservice-----')
 
-    # returns a list 
+    # returns a list of propertyID
     booking_result = invoke_http(booking_URL + book_param , method='GET')
     print('booking_result:', booking_result)
 
-    if booking_result["code"] in range(200,300):
+    if property_result["code"] or booking_result["code"] not in range(200,300):
+        return {
+            "code": 404,
+            "message": "There are no available properties that match your requirements. Please reselect your filters"
+        }
+    
+    property_result = property_result["data"]
 
-        prop_list = []
+    prop_list = []
 
-        for prop in property_result:
-            prop_list.append(prop["propertyID"])
+    for prop in property_result:
+        prop_list.append(prop["propertyID"])
 
-        print(prop_list)
-
-        for i in range(len(prop_list)):
-            
-            if str(prop_list[i]) in booking_result["data"]:
-                property_result.pop(i) 
+    for i in range(len(prop_list)):
+        
+        if str(prop_list[i]) in booking_result["data"]:
+            property_result.pop(i) 
 
 
     if len(property_result):

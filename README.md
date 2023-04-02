@@ -7,7 +7,7 @@ Our group focuses on the idea of connecting travellers with property owners who 
 
 ### Create a user account in phpMyAdmin
 
-1) Start up WAMPServer/ MAMPServer 
+1) Start up WAMPServer/ MAMPServer (do not close as it will be needed for the web app)
 
 2) Open phpMyAdmin and click User accounts 
 
@@ -28,7 +28,7 @@ Our group focuses on the idea of connecting travellers with property owners who 
 ### Dependencies
 
 #### Install Docker Desktop
-= Sign up for a Docker ID @ https://hub.docker.com and then download Docker Desktop from https://www.docker.com/get-started.
+- Sign up for a Docker ID @ https://hub.docker.com and then download Docker Desktop from https://www.docker.com/get-started.
 
 #### All required installations/dependencies are located in the following 2 files, 
 NO ACTION IS REQUIRED FROM YOU AS THESE WILL BE INSTALLED AUTOMATICALLY
@@ -55,7 +55,7 @@ Open your terminal in the root project folder -> in this case: travelnest, and e
 
 ``docker-compose up``
 
--- you may have to wait a few minutes for the app to start up, if you see error like pika.BlockingConnection, please DO NOT force stop the container, this error is appearing simply bcos rabbitmq needs time to start up. 
+-- you may have to wait a few minutes for the app to start up, if you see error like pika.BlockingConnection, please DO NOT force stop the container, this error is appearing simply because rabbitmq needs time to start up. 
 
 
 ### Setting up KONG API Gateway 

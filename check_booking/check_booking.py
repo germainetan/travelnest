@@ -19,7 +19,7 @@ renter_URL = environ.get("renter_URL") or "http://localhost:8000/renter"
 
 @app.route("/check_booking", methods=['POST'])
 
-def filter_property():
+def check_booking():
 
     if request.is_json:
         try:

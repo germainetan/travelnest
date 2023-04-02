@@ -100,7 +100,7 @@ public class BookingController {
         LocalDateTime parsed_end_datetime = LocalDateTime.parse(end_datetime);
         List<String> status_list = List.of("confirmed", "pending");
 
-        List<String> booking = bookingService.get_by_filter_condition(status_list, parsed_start_datetime, parsed_end_datetime);
+        List<Integer> booking = bookingService.get_by_filter_condition(status_list, parsed_start_datetime, parsed_end_datetime);
 
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
