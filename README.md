@@ -3,7 +3,7 @@
 Our group focuses on the idea of connecting travellers with property owners who are renting out their properties across the world. The 2 main users of our application are renters and property owners. 
 
 
-## Project Setup 
+# Project Setup 
 
 ### Create a user account in phpMyAdmin
 
@@ -27,10 +27,10 @@ Our group focuses on the idea of connecting travellers with property owners who 
 
 ### Dependencies
 
-# Install Docker Desktop
+#### Install Docker Desktop
 = Sign up for a Docker ID @ https://hub.docker.com and then download Docker Desktop from https://www.docker.com/get-started.
 
-# All required installations/dependencies are located in the following 2 files, 
+#### All required installations/dependencies are located in the following 2 files, 
 NO ACTION IS REQUIRED FROM YOU AS THESE WILL BE INSTALLED AUTOMATICALLY
 
 - amqp.reqs.txt
