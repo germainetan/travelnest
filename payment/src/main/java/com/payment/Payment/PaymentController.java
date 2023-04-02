@@ -15,6 +15,9 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/payment")
@@ -299,9 +302,13 @@ public class PaymentController {
         paymentdb.setPayment_desc("payment voided. Seller rejected.");
         repo.save(paymentdb);
 
-        if (response.getStatusCode() == HttpStatus.OK) {
+        if (response.getStatusCode() == HttpStatus.NO_CONTENT) {
             LOGGER.log(Level.INFO, "AUTHORIZED PAYMENT VOIDED");
-            return response.getBody();
+//            return response.getBody();
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("code", OK.value());
+            responseBody.put("data", "Authorized Payment Voided");
+            return ResponseEntity.status(HttpStatus.OK).body(responseBody);
         } else {
             LOGGER.log(Level.INFO, "FAILED TO VOID AUTHORIZED PAYMENT");
             return "Unable to void AUTHORIZED PAYMENT, STATUS CODE " + response.getStatusCode();
