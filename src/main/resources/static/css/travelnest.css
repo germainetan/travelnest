@@ -1,0 +1,158 @@
+body {
+    background-image: url("../images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+  
+.card-title, .card-subtitle {
+color: #C5C9A4;
+}
+  
+.navbar-brand img {
+height: 50px;
+width: 50px;
+}
+  
+#img {
+    width: 200px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: small;
+    font-weight: bold;
+    color: #C5C9A4;
+}
+
+a:link {
+    color: #ECBEB4;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #C5C9A4;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:active {
+    color:#476A6F;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #c38a8a;
+}
+
+.box {
+    padding: 0 20px 0 60px;
+}
+
+.propertyimg {
+    width:100%; 
+    height:100%;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.prop-btn {
+    background-color: #476A6F;
+    color: white;
+}
+
+.prop-btn:hover{
+    background-color: #324c50;
+    color: white
+}
+
+.reset-btn {
+    background-color: #b37676;
+    color: white;
+    /* margin-top: 20px;
+    padding-left: 200px;
+    padding-right: 200px; */
+}
+
+.reset-btn:hover{
+    background-color: #a16565;
+    color: white
+}
+
+
+/* individual Property page */
+.description {
+    color: black;
+}
+#row3 {
+    margin: 0px 40px 0px 20px;
+}
+.check {
+    width: 35px;
+    height: 35px;
+}
+.td_space {
+    padding-right: 20px;
+}
+#propertyPrice {
+    font-weight: bold;
+}
+#spacing {
+    padding-left: 130px;
+}
+
+.charged {
+    color: black;
+    font-size: medium;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Renter Profile Page */
+
+.renterimg {
+    width: 400px; 
+    height: 400px;
+}
+
+/* Payment Page */
+
+#paymentDetails {
+    /* margin: 0px 50px 0px 50px; */
+    color: white;
+    background-color: #476A6F;
+}
+
+.vertical {
+    border-left: 1px solid white;
+    height: 350px;
+    position:absolute;
+    left: 50%;
+}
+
+#padding {
+    padding: 0px 30px 0px 30px;
+}
+
+#backButton, #nextButton {
+    background-color: #476a6f;
+    color: white;
+    margin-top: 20px;
+    margin-right: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#summary {
+    background-color: #476a6f;
+    margin: 20px 0px 0px 20px;
+}
+#whiteText, #whiteLine {
+    color: white;
+}

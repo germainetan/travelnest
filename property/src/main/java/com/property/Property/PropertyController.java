@@ -32,7 +32,7 @@ public class PropertyController {
         if (all_property.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "There are no property records");
+            responseBody.put("message", "There are no property records");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -51,7 +51,7 @@ public class PropertyController {
         if (property.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "PropertyID " + propertyID + " does not exist");
+            responseBody.put("message", "PropertyID " + propertyID + " does not exist");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -71,7 +71,8 @@ public class PropertyController {
         if (property.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "No available properties");
+            responseBody.put("data", property);
+            responseBody.put("message", "No available properties");
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 

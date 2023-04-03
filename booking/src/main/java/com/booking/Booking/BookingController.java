@@ -59,7 +59,7 @@ public class BookingController {
         if (allbooking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "There are no booking records");
+            responseBody.put("message", "There are no booking records");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -78,7 +78,7 @@ public class BookingController {
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "Booking with bookingID " + bookingID + " does not exist");
+            responseBody.put("message", "Booking with bookingID " + bookingID + " does not exist");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -121,7 +121,8 @@ public class BookingController {
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "No " + booking_status + " booking records");
+            responseBody.put("data", booking);
+            responseBody.put("message", "No " + booking_status + " booking records");
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 
@@ -167,7 +168,8 @@ public class BookingController {
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "No booking records for ownerID " + ownerID);
+            responseBody.put("data", booking);
+            responseBody.put("message", "No booking records for ownerID " + ownerID);
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 
@@ -189,7 +191,8 @@ public class BookingController {
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "No booking records for renterID " + renterID);
+            responseBody.put("data", booking);
+            responseBody.put("message", "No booking records for renterID " + renterID);
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 
@@ -213,7 +216,7 @@ public class BookingController {
         if (!exits) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "Booking ID " + bookingID + " not found");
+            responseBody.put("message", "Booking ID " + bookingID + " not found");
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 

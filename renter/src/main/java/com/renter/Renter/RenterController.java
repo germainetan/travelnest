@@ -32,7 +32,7 @@ public class RenterController {
         if (all_renters.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "There are no renter records");
+            responseBody.put("message", "There are no renter records");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -51,7 +51,7 @@ public class RenterController {
         if (renter.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "RenterID " + renterID + " does not exist");
+            responseBody.put("message", "RenterID " + renterID + " does not exist");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 

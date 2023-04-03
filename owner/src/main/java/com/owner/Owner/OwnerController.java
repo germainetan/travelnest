@@ -32,7 +32,7 @@ public class OwnerController {
         if (all_owners.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "There are no owner records");
+            responseBody.put("message", "There are no owner records");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
@@ -52,7 +52,7 @@ public class OwnerController {
         if (owner.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "OwnerID " + ownerID + " does not exist");
+            responseBody.put("message", "OwnerID " + ownerID + " does not exist");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseBody);
         }
 
