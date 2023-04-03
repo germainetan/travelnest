@@ -22,7 +22,7 @@ if response.status_code == 200:
         photo_height = 400
 
         raw_image_data = gmaps.places_photo(photo_reference = photo, max_width = photo_width, max_height = photo_height)
-        filename = "./images/property/P00" + str(property['propertyID']) + '.jpg'
+        filename = "./src/main/resources/static/images/property/P00" + str(property['propertyID']) + '.jpg'
         f = open(filename, 'wb')
 
         for chunk in raw_image_data:
