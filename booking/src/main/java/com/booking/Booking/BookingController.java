@@ -105,7 +105,8 @@ public class BookingController {
         if (booking.isEmpty()) {
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("code", NOT_FOUND.value());
-            responseBody.put("data", "No clashed bookings");
+            responseBody.put("data", booking);
+            responseBody.put("message", "No clashed bookings");
             return ResponseEntity.status(NOT_FOUND).body(responseBody);
         }
 

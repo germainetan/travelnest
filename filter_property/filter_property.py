@@ -13,8 +13,8 @@ app = Flask(__name__)
 CORS(app)
 
 
-property_URL = environ.get("property_URL") or "http://localhost:8083/property"
-booking_URL = environ.get("booking_URL") or "http://localhost:8080/booking"
+property_URL = environ.get("property_URL") or "http://localhost:8000/property"
+booking_URL = environ.get("booking_URL") or "http://localhost:8000/booking"
 
 @app.route("/filter_property", methods=['POST'])
 
@@ -66,6 +66,12 @@ def processFilterProperty(book_filter):
     property_result = invoke_http(property_URL + prop_param , method='GET')
     print('property_result:', property_result)
 
+    # if there is no property, don't need to check booking_result already as it is redundant
+    if property_result["code"] not in range(200,300):
+        return {
+            "code": 404,
+            "message": "There are no available properties that match your requirements. Please reselect your filters"
+        }
     
     # invoke booking microservice
     print('\n-----Invoking booking microservice-----')
@@ -73,12 +79,6 @@ def processFilterProperty(book_filter):
     # returns a list of propertyID
     booking_result = invoke_http(booking_URL + book_param , method='GET')
     print('booking_result:', booking_result)
-
-    if property_result["code"] or booking_result["code"] not in range(200,300):
-        return {
-            "code": 404,
-            "message": "There are no available properties that match your requirements. Please reselect your filters"
-        }
     
     property_result = property_result["data"]
 

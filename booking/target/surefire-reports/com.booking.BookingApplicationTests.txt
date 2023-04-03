@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.booking.BookingApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.171 s - in com.booking.BookingApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.951 s - in com.booking.BookingApplicationTests
