@@ -15,7 +15,7 @@ const root = Vue.createApp({
 
             enddate: "",
 
-            guests: 0,
+            guests: 1,
 
             filtererror: "",
 

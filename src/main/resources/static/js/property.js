@@ -83,7 +83,7 @@ const root = Vue.createApp({
     computed: {
         result(){
 
-            if(this.startdate === "0" || this.enddate === "0")
+            if(this.startdate === "" || this.enddate === "")
             {
                 return this.numofdays
             }
@@ -117,6 +117,11 @@ const root = Vue.createApp({
         let params = (new URL(document.location)).searchParams
         let property = params.get("property")
         this.country = params.get("country")
+        this.startdate = params.get("startdate")
+        this.starttime = params.get("starttime")
+        this.enddate = params.get("enddate")
+        this.endtime = params.get("endtime")
+        this.guests = params.get("guests")
 
         console.log(property)
 
