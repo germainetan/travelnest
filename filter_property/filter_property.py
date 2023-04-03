@@ -89,7 +89,7 @@ def processFilterProperty(book_filter):
 
     for i in range(len(prop_list)):
         
-        if str(prop_list[i]) in booking_result["data"]:
+        if prop_list[i] in booking_result["data"]:
             property_result.pop(i) 
 
 
