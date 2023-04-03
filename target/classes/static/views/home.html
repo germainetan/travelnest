@@ -140,7 +140,7 @@
                   <div class="card h-100">
                     <a :href="`property.html?property=${property.propertyID}`"><img :src="`../images/property/P00${property.propertyID}.jpg`" alt="" class="propertyimg rounded-3 mb-3"></a>
                     <div class="card-body">
-                      <h5 class="card-title"><a :href="`property.html?property=${property.propertyID}&country=${property.country}`">{{property.title}}</a></h5>
+                      <h5 class="card-title"><a :href="`property.html?property=${property.propertyID}&country=${property.country}&startdate=${startdate}&starttime=${starttime}&enddate=${enddate}&endtime=${endtime}&guests=${guests}`">{{property.title}}</a></h5>
                       <p class="card-text">
                         <span class="fw-bold">Country:</span> {{property.country}}
                       </p>
