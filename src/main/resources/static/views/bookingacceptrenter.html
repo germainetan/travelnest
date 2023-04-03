@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* * {
+          padding: 0;
+          margin: 0;
+          font-family: "Montserrat";
+        } */
+  
+        /* .logo{
+          width:auto;
+          margin-left: 20px;
+        } */
+        /* .nav-link{
+          font-size:large;
+          font-weight: bold;
+          color: #C5C9A4;
+          padding-top:60px;
+        } */
+        body {
+          background-image: url("../images/background.jpeg");
+        }
+        /* .container-fluid {
+          margin-left: 25px;
+          margin-right: 10px;
+          margin-bottom: 20px;
+        } */
+        /* .card {
+          margin-top: 20px;
+        } */
+        .card-title, .card-subtitle {
+          color: #C5C9A4;
+        }
+        .form-label {
+          font-size: small;
+          font-weight: bold;
+          color: #C5C9A4;
+        }
+        .btn {
+          background-color: #476A6F;
+          color: white;
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        .box {
+          padding: 0 20px 0 60px;
+        }
+        a:link {
+          color: #ECBEB4;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        a:visited {
+          color: #C5C9A4;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        a:active {
+          color:#476A6F;
+          background-color: transparent;
+          text-decoration: underline;
+        }
+        .propertyimg {
+          width:100%; 
+          height:100%;
+        }
+  
+        /* .navbar-brand {
+          width:150px;
+          font-size: 24px;
+        } */
+        .navbar-brand img {
+          height: 50px;
+          width: 50px;
+          /* put value of image height as your need */
+          /* float: left; */
+        }
+        .btn:hover{
+          background-color: #3E5D61;
+          color: white
+        }
+      </style>
+
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var perfEntries = performance.getEntriesByType("navigation");
+
+        if (perfEntries[0].type === "back_forward") {
+            location.reload();
+        }
+    </script>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+          <img src="../images/logo.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black">
+              Check Bookings
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="rentercheckbookinglogin.html" style="color:black">I am a Renter</a></li>
+              <li><a class="dropdown-item" href="ownercheckbookinglogin.html" style="color:black">I am an Owner</a></li>
+            </ul>
+          </li>
+          </ul>
+      </div>
+      </div>
+    </nav>
+
+    <div id="root">
+    <div class="container-fluid p-3">
+    <div class="card rounded-4 border-dark">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{displaytext}}</h5>
+          <p class="card-text" v-html="displaybody"></p>
+
+          <div v-if="displaytext != 'Processing your request... Please Wait...'"><a v-bind:href="`renterCheckBooking.html?renterid=${renterid}`"><button type="button" class="btn btn-primary">Back to My Bookings</button></a></div>
+        </div>
+        
+    </div>
+    </div>
+    </div>
+
+    <script>
+
+        // Create a new Vue instance
+        const root = Vue.createApp({
+
+        // Data Properties
+        data() {
+            return {
+
+                displaytext: "Processing your request... Please Wait...",
+                displaybody: "",
+                renterid: ""
+            }
+        },
+
+        created() {
+
+            let params = (new URL(document.location)).searchParams
+            let bookingid = params.get("bookingID")
+            let bookingstatus = params.get("action")
+            this.renterid = params.get("renterid")
+            console.log(bookingid)
+
+            axios.post(`http://localhost:8000/process_booking`, {
+
+                "bookingid": bookingid,
+                "booking_status": bookingstatus
+
+                })
+                .then(response => {
+
+                    this.displaytext = `Booking ${bookingstatus}!`
+                    axios.get(`http://localhost:8000/booking/${bookingid}`)
+                    .then(response => {
+
+                        console.log(response.data.data)
+                        axios.get(`http://localhost:8000/property/${response.data.data.propertyID}`)
+                        .then(resp => {
+
+                            console.log(resp.data.data)
+                            this.displaybody = `Booking ID: ${bookingid} <br> Booking Status: ${bookingstatus}`
+
+                        })
+                        .catch(error => {
+
+                        })
+
+                    })
+                    .catch(error => {
+
+                    })
+
+                })
+                .catch(error => {
+                    this.displaytext = `There was a problem with your request. Please try again.`
+                })
+
+
+            },
+
+        methods: {
+            
+
+        }
+
+        })
+        root.mount("#root")
+
+
+    </script>
+    
+</body>
+</html>

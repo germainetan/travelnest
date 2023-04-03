@@ -1,0 +1,15 @@
+body {
+    background-image: url("../images/background.jpeg");
+    background-size: cover; /* scale the image to cover the entire element */
+  }
+
+#img {
+    width: 200px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+
+  
+  

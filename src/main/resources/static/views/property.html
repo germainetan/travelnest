@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>Turtle Bay HuaHin eco luxeTurt Villa in Lotus Bay</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* .logo{
+        width:auto;
+        margin-left: 20px;
+        } */
+        /* .nav-link{
+        font-size:large;
+        font-weight: bold;
+        color: #C5C9A4;
+        padding-top:60px;
+        } */
+        body {
+            background-image: url("../images/background.jpeg");
+        }
+        /* .card { */
+        /* top right btm left */
+        /* margin: 20px 50px 20px 50px;
+        } */
+        h2,h4,p {
+            color: #C5C9A4;
+        }
+        .form-label {
+        font-size: small;
+        font-weight: bold;
+        color: #C5C9A4;
+        }
+        a.reviews:link {
+        color: #C5C9A4;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        a.reviews:visited {
+        color: #ECBEB4;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        a.reviews:active {
+        color:#476A6F;
+        background-color: transparent;
+        text-decoration: underline;
+        }
+        /* #images {
+            padding: 0px 5px 0px 5px;
+        } */
+        .description {
+            color: black;
+        }
+        #row3 {
+            margin: 0px 40px 0px 20px;
+        }
+        .check {
+            width: 35px;
+            height: 35px;
+        }
+        .td_space {
+            padding-right: 20px;
+        }
+        #propertyPrice {
+            font-weight: bold;
+        }
+        #spacing {
+            padding-left: 130px;
+        }
+        .btn {
+            background-color: #476A6F;
+            color: white;
+            margin-top: 20px;
+            padding-left: 200px;
+            padding-right: 200px;
+        }
+        .btn:hover{
+            background-color: #3E5D61;
+            color: white
+        }
+        .charged {
+            color: black;
+            font-size: medium;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .navbar-brand img {
+        height: 50px;
+        width: 50px;
+        /* put value of image height as your need */
+        /* float: left; */
+      }
+      /* card{
+        margin-top: 20px;
+      }. */
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var today = new Date();
+        var dd = ("0" + (today.getDate())).slice(-2);
+        var mm = ("0" + (today.getMonth() +　1)).slice(-2);
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd ;
+    </script>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="../images/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black">
+                Check Bookings
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="rentercheckbookinglogin.html" style="color:black">I am a Renter</a></li>
+                <li><a class="dropdown-item" href="ownercheckbookinglogin.html" style="color:black">I am an Owner</a></li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div id="root">
+        <div class="container-fluid p-3">
+            <div class="row">
+                <div class="col">
+                <div class="card rounded-4 border-dark">
+                    <div class="card-body">
+                        <h2 style="margin-bottom: 0;" class="px-4 mb-3">{{properties.title}}</h2>
+                        <div class="px-4">
+                        <table class="mb-4">
+                            <tr>
+                                <td><img src="../images/property/star.png" style="width:20px; height:20px;"></td>
+                                <td class="td_space">{{properties.rating}}</td>
+                                <td class="td_space"><a href="reviews.html" class="reviews">10 reviews</a></td>
+                                <td>{{properties.city}}, {{properties.country}}</td>
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                        <div class="row px-4 mb-4">
+                            <div class="col">
+                                <img src="../images/property/P001_1.jpg" alt="" style="height:200px;width:100%" class="rounded-3">
+                            </div>
+                            <div class="col">
+                                <img src="../images/property/P001_2.jpg" alt="" style="height:200px;width:100%" class="rounded-3">
+                            </div>
+                            <div class="col">
+                                <img src="../images/property/P001_3.jpg" alt="" style="height:200px;width:100%" class="rounded-3">
+                            </div>
+                            <div class="col">
+                                <img src="../images/property/P001_4.jpg" alt="" style="height:200px;width:100%" class="rounded-3">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="row px-4">
+                                    <h5>About this space</h5>
+                                    <p class="description">
+                                        If you're looking for a property with car park free of charge, look no further. 
+                                        Conveniently situated, this property puts you close to attractions and interesting dining options.
+                                        Moreover, it is packed with in-house facilities to improve the quality and joy of your stay.
+                                    </p>
+                                </div>
+                                <div class="row px-4">
+                                    <h5>Address</h5>
+                                    <p class="description">
+                                        {{this.properties.address}}
+                                    </p>
+                                </div>
+                                <div class="row px-4">
+                                    <hr>
+                                    <h5 class="mb-3">What this place offers</h5>
+                                    <table style="height: 100px;">
+                                        <tbody>
+                                        <tr>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td class="td_space">Car Park</td>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td>Wi-Fi</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td class="td_space">Balcony or terrace</td>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td>Internet</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td class="td_space">Fans</td>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td>TV</td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td class="td_space">Hand sanitizer and<br>soap provided</td>
+                                            <td><img src="../images/property/check.png" class="check"></td>
+                                            <td>Body wash</td>
+                                        </tr>                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col px-4">
+                                <div class="card" >
+                                    <div class="card-body">
+                                        
+                                        <table>
+                                            <tr>
+                                                <td><h4>${{properties.price}} per night</h4></td>
+                                            </tr>
+                                        </table>
+                                        <br>
+
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="startDate" class="form-label" v-model="startdate">START</label>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="endDate" class="form-label">END</label>
+                                                </div>
+                                            </div>
+                                        </div>  
+        
+                                        <div class="input-group mb-3">
+                                            <input type="date" class="form-control" id="startDate" v-model="startdate" value="2023/04/01" >
+                                            <input type="date" class="form-control" id="endDate" v-model="enddate">
+                                        </div>          
+        
+                                        <div class="mb-3">
+                                            <label for="guests" class="form-label">NUMBER OF GUESTS</label>
+                                            <input type="number" class="form-control" id="guests" value="1">
+                                        </div>
+
+                                        <div class="container">
+                                            <div class="row" id="propertyPrice">
+                                                <div class="col">
+                                                    <div v-if="numofdays < 2">${{properties.price}} SGD x {{result}} night</div>
+                                                    <div v-else>${{properties.price}} SGD x {{result}} nights</div>
+                                                </div>
+                                                <div class="col text-end">
+                                                    ${{total}} SGD
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <hr>
+        
+                                        <div class="container">
+                                            <div class="row" id="propertyPrice">
+                                                <div class="col">
+                                                    Total
+                                                </div>
+                                                <div class="col text-end">
+                                                    ${{total}} SGD
+                                                </div>
+                                            </div>
+                                        </div>                           
+        
+                                        <a v-bind:href="`payment.html?title=${properties.title}&property=${properties.propertyID}&price=${price}&startdate=${startdate}&enddate=${enddate}&numofnights=${numofdays}`">
+                                            <div class="text-center">
+                                                <button type="submit" id="bookButton" class="btn">Book</button>
+                                            </div>
+                                        </a>
+        
+                                        <p class="charged">You won't be charged yet</p>
+
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/property.js"></script>
+
+    <script type="text/javascript">
+        // document.getElementById("bookButton").onclick = function () {
+        //     location.href = "payment.html";
+        // };
+    </script>
+</body>
+</html>
