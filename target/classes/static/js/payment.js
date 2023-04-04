@@ -36,7 +36,7 @@ paypal
                 method: "post",
                 body: JSON.stringify({
                     orderid: data.orderID,
-                    renterid: 9,
+                    renterid: 2,
                     propertyid: property,
                     start_datetime: startdate.concat(" ", "12:00:00"),
                     end_datetime: enddate.concat(" ", "12:00:00")
