@@ -53,13 +53,13 @@
             <li><a href="docker-compose">Docker Compose</a></li>
             <li><a href="setting-up-kong-api-gateway">Setting up KONG API Gateway</a></li>
             <li><a href="accessing-travelnest-website">Accessing TravelNest website</a></li>
-            <li><a href="test-out-twilio-api:">Test out twilio API</a></li>
+            <li><a href="test-out-twilio-api">Test out twilio API</a></li>
             <li><a href="to-stop-running">To stop running</a></li>
         </ul>
     </li>
     <li><a href="#scenario-1">Scenario 1</a>
         <ul>
-            <li href="#payment-credentials"><a>Payment Credentials</a></li>
+            <li><a href="#payment-credentials">Payment Credentials</a></li>
         </ul>
     </li>
     <li><a href="#scenario-2">Scenario 2</a></li>
