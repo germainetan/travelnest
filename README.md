@@ -179,15 +179,18 @@ __(kong-migration is expected to exit)__
 
 ### Test out twilio API
 
-1. you need to send the following WhatsApp message to +14155238886:
+1. Create an account on [twilio](https://www.twilio.com/try-twilio) and place the SID and authtoken in the .env file.
+__(.env file is to be created in the travelnest folder)__
 
-``join improve-entirely``
+2. Send the code received on twilio website to +14155238886 on WhatsApp:
 
-2. replace the phone field of renterID 2 in the renterservice database in phpMyAdmin with your number
+- Example: ``join improve-entirely``
 
-2. Alternatively, you can replace the phone field of any owner in the ownerservice database in phpMyAdmin with your number, but doing so would mean you need to know which property the owner owns.
+3. replace the phone field of renterID 2 in the renterservice database in phpMyAdmin with your number
 
-3. Place an order with our web application and you are all set!
+4. Alternatively, you can replace the phone field of any owner in the ownerservice database in phpMyAdmin with your number, but doing so would mean you need to know which property the owner owns.
+
+5. Place an order with our web application and you are all set!
 
 
 ### To stop running
