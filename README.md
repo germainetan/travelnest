@@ -82,13 +82,13 @@ TravelNest focuses on the idea of connecting travellers with property owners who
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Bulit With
+## Built With
 
 ### Frontend
 * HTML
 * CSS
 * Javascript
-* [Bootstrap v5.2] (https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+* [Bootstrap v5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 * [Vue.js](https://vuejs.org/)
 
 ### API Gateway
