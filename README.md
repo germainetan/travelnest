@@ -136,7 +136,7 @@ NO ACTION IS REQUIRED FROM YOU AS THESE WILL BE INSTALLED AUTOMATICALLY
 - amqp.reqs.txt
 - http.reqs.txt
 
-HOWEVER, if you happen to encounter problems with the installations when running up the application with docker compose, you may execute this command ``python -m pip install flask`` to ensure that you have the same version installed. 
+HOWEVER, if you happen to encounter problems with the installations when running up the application with docker compose, you may execute the command below to ensure that you have the same version installed. 
 
 Here are the commands that you can execute to manually install:
 __Note: for mac users, you may need to type "python3" instead of "python"__`
