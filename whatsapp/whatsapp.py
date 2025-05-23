@@ -28,14 +28,14 @@ def sendWhatsapp(data):
     ownerPhone = 'whatsapp:+65' + str(data['ownerPhone'])
     renterPhone = 'whatsapp:+65' + str(data['renterPhone'])
 
-    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'98242683', 'renterFullname':'Germaine Tan', 'renterPhone':'87276883'}
+    # data = {'bookingStatus':'pending', 'bookingid':'1', 'ownerFullname':'Low Xuanli', 'ownerPhone':'12345678', 'renterFullname':'Germaine Tan', 'renterPhone':'98765432'}
     if data['bookingStatus'] == 'pending':
         ownerMsg = f"[no reply] From Travelnest: Hi {data['ownerFullname']}, there is a booking BookingID: {data['bookingid']} awaiting your approval. Please login to view the booking."
         renterMsg = f"[no reply] From Travelnest: Hi {data['renterFullname']}, thank you for booking with us! Your payment is currently kept on hold and you will receive the status of your booking BookingID: {data['bookingid']} within 3 working days."
         client.messages.create(to=ownerPhone, from_=f'whatsapp:{whatsappPhone}', body=ownerMsg) 
         client.messages.create(to=renterPhone, from_=f'whatsapp:{whatsappPhone}', body=renterMsg) 
     
-    # data = {'bookingStatus':'confirmed', 'bookingid':'1', 'ownerFullname':'', 'ownerPhone':'',  'renterFullname':'Low Xuanli', 'renterPhone':'98242683'}
+    # data = {'bookingStatus':'confirmed', 'bookingid':'1', 'ownerFullname':'', 'ownerPhone':'',  'renterFullname':'Low Xuanli', 'renterPhone':'12345678'}
     elif data['bookingStatus'] == 'confirmed':
         renterMsg = f"[no reply] From Travelnest: Hi {data['renterFullname']}, your booking BookingID: {data['bookingid']} is confirmed and the payment has been deducted successfully. You may login to view your booking(s)."
         client.messages.create(to=renterPhone, from_=f'whatsapp:{whatsappPhone}', body=renterMsg) 
